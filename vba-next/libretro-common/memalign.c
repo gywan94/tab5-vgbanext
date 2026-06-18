@@ -1,0 +1,84 @@
+/* Copyright  (C) 2010-2015 The RetroArch team
+ *
+ * ---------------------------------------------------------------------------------------
+ * The following license statement only applies to this file (memalign.c).
+ * ---------------------------------------------------------------------------------------
+ *
+ * Permission is hereby granted, free of charge,
+ * to any person obtaining a copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+#include <stdint.h>
+#include <stdlib.h>
+
+#include <memalign.h>
+
+/* tab5: VBA-Next allocates the multi-MB ROM/work/VRAM buffers through this.
+ * Plain malloc() on ESP-IDF serves internal RAM (only a few hundred KB), so the
+ * ROM alloc fails. Route raw allocations to PSRAM. (The L2 cache hides PSRAM
+ * latency even for IWRAM, per the mGBA port's findings, so this is fine.) */
+#ifdef ESP_PLATFORM
+#include "esp_heap_caps.h"
+/* E2 (tried, reverted): routing IWRAM/BIOS to internal SRAM gave 0 gain — the
+ * 256KB L2 cache already hides PSRAM latency (same finding as the mGBA port).
+ * So keep everything in PSRAM and leave internal SRAM free (a future dynarec
+ * wants it for the exec arena). */
+#define VBA_RAW_ALLOC(sz) heap_caps_malloc((sz), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT)
+#else
+#define VBA_RAW_ALLOC(sz) malloc(sz)
+#endif
+
+void *memalign_alloc(size_t boundary, size_t size)
+{
+   void **place   = NULL;
+   uintptr_t addr = 0;
+   void *ptr      = (void*)VBA_RAW_ALLOC(boundary + size + sizeof(uintptr_t));
+   if (!ptr)
+      return NULL;
+
+   addr           = ((uintptr_t)ptr + sizeof(uintptr_t) + boundary)
+      & ~(boundary - 1);
+   place          = (void**)addr;
+   place[-1]      = ptr;
+
+   return (void*)addr;
+}
+
+void memalign_free(void *ptr)
+{
+   void **p = NULL;
+   if (!ptr)
+      return;
+
+   p = (void**)ptr;
+   free(p[-1]);
+}
+
+void *memalign_alloc_aligned(size_t size)
+{
+#if defined(__x86_64__) || defined(__LP64) || defined(__IA64__) || defined(_M_X64) || defined(_WIN64)
+   return memalign_alloc(64, size);
+#elif defined(__i386__) || defined(__i486__) || defined(__i686__) || defined(GEKKO)
+   /* Gekko / Broadway (GameCube, Wii) has 32-byte cache lines. */
+   return memalign_alloc(32, size);
+#elif defined(__ppc__) || defined(__powerpc__) || defined(__POWERPC__) || defined(_XBOX360) || defined(__CELLOS_LV2__) || defined(WIIU)
+   /* PPC960 (PS3 Cell PPU), Xenon (Xbox 360), Espresso (Wii U) all have
+    * 128-byte L2 cache lines. Aligning large emulator buffers to a full
+    * line prevents false-sharing at the buffer boundary. */
+   return memalign_alloc(128, size);
+#else
+   return memalign_alloc(32, size);
+#endif
+}

@@ -1,0 +1,21 @@
+idf_component_register(
+    SRCS
+        "bsp_tab5.c"
+        "esp_lcd_st7123.c"
+    INCLUDE_DIRS
+        "include"
+        "include/bsp"
+    REQUIRES
+        driver
+        esp_lcd
+        esp_lcd_touch
+        esp_lcd_touch_st7123
+        esp_hw_support
+        espressif__esp_codec_dev
+        esp_driver_i2s
+    PRIV_REQUIRES
+        esp_driver_gpio
+        esp_driver_i2c
+        esp_driver_ledc
+        esp_timer
+)

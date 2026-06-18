@@ -1,0 +1,76 @@
+# ── Target ──
+CONFIG_IDF_TARGET="esp32p4"
+
+# ── PSRAM ──
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_HEX=y
+CONFIG_SPIRAM_SPEED_200M=y
+CONFIG_SPIRAM_TRY_ALLOCATE_WIFI_LWIP=y
+CONFIG_SPIRAM_USE_CAPS_ALLOC=y
+CONFIG_SPIRAM_ALLOW_BSS_SEG_EXTERNAL_MEMORY=y
+
+# ── CPU: run the HP cores as fast as the P4 allows ──
+# NOTE: 400MHz is offered by Kconfig but does NOT work on this board/IDF combo —
+# selecting it makes the chip fall back to 90MHz at boot (see PERF_NOTES). 360 is
+# the validated max here.
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_360=y
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ=360
+
+# ── L2 cache: 256KB. All the hot GBA data (EWRAM, ROM, VRAM, framebuffers) lives
+# in PSRAM, so a bigger L2 raises the hit rate for both the ARM interpreter and
+# the PPU. This used to starve mGBA's internal audio-buffer malloc (NULL → store
+# fault), but that 64KB buffer now lives in PSRAM (circle-buffer.c), so 256KB is
+# safe. 512KB would leave too little internal SRAM to boot. ──
+CONFIG_CACHE_L2_CACHE_256KB=y
+
+# ── MIPI DSI ──
+CONFIG_SOC_MIPI_DSI_SUPPORTED=y
+
+# ── Flash ──
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+
+# ── Partition table ──
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="../../partitions_ota.csv"
+CONFIG_PARTITION_TABLE_OFFSET=0x8000
+
+# ── FreeRTOS ──
+CONFIG_FREERTOS_HZ=1000
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=32768
+
+# ── USB Host ──
+CONFIG_USB_HOST_HUBS_SUPPORTED=y
+CONFIG_USB_HOST_HW_BUFFER_BIAS_IN=y
+
+# ── FAT filesystem ──
+CONFIG_FATFS_LFN_HEAP=y
+CONFIG_FATFS_MAX_LFN=255
+# Chinese (GBK) code page + UTF-8 API so CJK long filenames come back as UTF-8
+# instead of garbled 8.3 short names.
+CONFIG_FATFS_CODEPAGE_936=y
+CONFIG_FATFS_API_ENCODING_UTF_8=y
+
+# ── Audio codec (esp_codec_dev) ──
+CONFIG_CODEC_I2C_BACKWARD_COMPATIBLE=n
+
+# ── Optimizations — performance (the GBA ARM interpreter is CPU-bound) ──
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+CONFIG_BOOTLOADER_COMPILER_OPTIMIZATION_SIZE=y
+CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_DISABLE=y
+CONFIG_RINGBUF_PLACE_FUNCTIONS_INTO_FLASH=y
+CONFIG_FREERTOS_PLACE_FUNCTIONS_INTO_FLASH=y
+CONFIG_HAL_ASSERTION_DISABLE=y
+CONFIG_COMPILER_SAVE_RESTORE_LIBCALLS=y
+CONFIG_ESP_ERR_TO_NAME_LOOKUP=n
+
+# ── I2C ──
+CONFIG_I2C_ISR_IRAM_SAFE=n
+
+# ── Dynarec R&D: disable the PMP W^X SRAM split so generated code can execute
+# from a heap buffer (MALLOC_CAP_EXEC). Trades W^X protection for JIT support. ──
+CONFIG_ESP_SYSTEM_PMP_IDRAM_SPLIT=n
+
+# ── Disable watchdog on CPU0 (USB HID Host can starve the IDLE task) ──
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU0=n
+# ── Disable CPU1 idle WDT: the VBA threaded renderer worker busy-spins on core1 ──
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU1=n

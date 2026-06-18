@@ -1,0 +1,211 @@
+﻿Executing action: all (aliases: build)
+Running ninja in directory C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build
+Executing "ninja all"...
+[1/9] Performing build step for 'bootloader'
+
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x2000 C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/bootloader/bootloader.bin"
+
+Bootloader binary size 0x4fe0 bytes. 0x1020 bytes (17%) free.
+
+
+
+[2/9] No install step for 'bootloader'
+
+[3/9] Completed 'bootloader'
+
+[4/9] Building C object esp-idf/vgba_jit/CMakeFiles/__idf_vgba_jit.dir/vgba_jit.c.obj
+
+[5/9] Linking C static library esp-idf\vgba_jit\libvgba_jit.a
+
+[6/9] Generating esp-idf/esp_system/ld/sections.ld
+
+[7/9] Linking CXX executable vgba_tab5_app.elf
+
+[8/9] Generating binary image from built executable
+
+esptool.py v4.12.dev2
+
+
+Creating esp32p4 image...
+
+
+Merged 3 ELF sections
+
+
+Successfully created esp32p4 image.
+
+
+Generated C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/vgba_tab5_app.bin
+
+[9/9] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/partition_table/partition-table.bin C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/vgba_tab5_app.bin"
+
+vgba_tab5_app.bin binary size 0x1101a0 bytes. Smallest app partition is 0x400000 bytes. 0x2efe60 bytes (73%) free.
+
+
+Executing action: flash
+Running ninja in directory C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build
+Executing "ninja flash"...
+[1/5] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/partition_table/partition-table.bin C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/vgba_tab5_app.bin"
+
+vgba_tab5_app.bin binary size 0x1101a0 bytes. Smallest app partition is 0x400000 bytes. 0x2efe60 bytes (73%) free.
+
+
+[2/5] Performing build step for 'bootloader'
+
+[1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x2000 C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/bootloader/bootloader.bin"
+
+Bootloader binary size 0x4fe0 bytes. 0x1020 bytes (17%) free.
+
+
+
+[3/5] No install step for 'bootloader'
+
+[4/5] Completed 'bootloader'
+
+[4/5] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.5.2\components\esptool_py && C:\Espressif\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=C:/Espressif/frameworks/esp-idf-v5.5.2 -D SERIAL_TOOL=C:/Espressif/python_env/idf5.5_py3.11_env/Scripts/python.exe;;C:/Espressif/frameworks/esp-idf-v5.5.2/components/esptool_py/esptool/esptool.py;--chip;esp32p4 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build -P C:/Espressif/frameworks/esp-idf-v5.5.2/components/esptool_py/run_serial_tool.cmake"
+
+esptool.py --chip esp32p4 -p COM4 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 16MB 0x2000 bootloader/bootloader.bin 0x10000 vgba_tab5_app.bin 0x8000 partition_table/partition-table.bin 0xd000 ota_data_initial.bin
+
+esptool.py v4.12.dev2
+
+Serial port COM4
+
+Connecting...
+
+Chip is ESP32-P4 (revision v1.3)
+
+Features: High-Performance MCU
+
+Crystal is 40MHz
+
+USB mode: USB-Serial/JTAG
+
+MAC: 80:f1:b2:d1:4e:67
+
+Uploading stub...
+
+Running stub...
+
+Stub running...
+
+Changing baud rate to 460800
+
+Changed.
+
+Configuring flash size...
+
+Flash will be erased from 0x00002000 to 0x00006fff...
+
+Flash will be erased from 0x00010000 to 0x00120fff...
+
+Flash will be erased from 0x00008000 to 0x00008fff...
+
+Flash will be erased from 0x0000d000 to 0x0000efff...
+
+SHA digest in image updated
+
+Compressed 20448 bytes to 13047...
+
+Writing at 0x00002000... (100 %)
+
+Wrote 20448 bytes (13047 compressed) at 0x00002000 in 0.2 seconds (effective 999.9 kbit/s)...
+
+Hash of data verified.
+
+Compressed 1114528 bytes to 555586...
+
+Writing at 0x00010000... (2 %)
+
+Writing at 0x0001cbfe... (5 %)
+
+Writing at 0x00036c3b... (8 %)
+
+Writing at 0x0003b139... (11 %)
+
+Writing at 0x0003f588... (14 %)
+
+Writing at 0x00043a0d... (17 %)
+
+Writing at 0x00047ed5... (20 %)
+
+Writing at 0x0004c31d... (23 %)
+
+Writing at 0x0005087a... (26 %)
+
+Writing at 0x00054d8d... (29 %)
+
+Writing at 0x0005926d... (32 %)
+
+Writing at 0x0005d6ce... (35 %)
+
+Writing at 0x00064070... (38 %)
+
+Writing at 0x00069de3... (41 %)
+
+Writing at 0x0006f778... (44 %)
+
+Writing at 0x0007555e... (47 %)
+
+Writing at 0x0007bdc8... (50 %)
+
+Writing at 0x000850ab... (52 %)
+
+Writing at 0x0009b064... (55 %)
+
+Writing at 0x000adef6... (58 %)
+
+Writing at 0x000bcc24... (61 %)
+
+Writing at 0x000c956d... (64 %)
+
+Writing at 0x000cef29... (67 %)
+
+Writing at 0x000d4c22... (70 %)
+
+Writing at 0x000da510... (73 %)
+
+Writing at 0x000e0e61... (76 %)
+
+Writing at 0x000e7ac5... (79 %)
+
+Writing at 0x000eda6e... (82 %)
+
+Writing at 0x000f53dc... (85 %)
+
+Writing at 0x000fbf11... (88 %)
+
+Writing at 0x00101f3d... (91 %)
+
+Writing at 0x00107fe8... (94 %)
+
+Writing at 0x0010fdfb... (97 %)
+
+Writing at 0x0011698a... (100 %)
+
+Wrote 1114528 bytes (555586 compressed) at 0x00010000 in 4.1 seconds (effective 2186.4 kbit/s)...
+
+Hash of data verified.
+
+Compressed 3072 bytes to 115...
+
+Writing at 0x00008000... (100 %)
+
+Wrote 3072 bytes (115 compressed) at 0x00008000 in 0.0 seconds (effective 762.6 kbit/s)...
+
+Hash of data verified.
+
+Compressed 8192 bytes to 31...
+
+Writing at 0x0000d000... (100 %)
+
+Wrote 8192 bytes (31 compressed) at 0x0000d000 in 0.0 seconds (effective 2539.2 kbit/s)...
+
+Hash of data verified.
+
+
+
+Leaving...
+
+Hard resetting via RTS pin...
+
+Done

@@ -1,0 +1,11 @@
+# Standalone vgba_tab5 partition table (16 MB flash)
+# vgba_tab5 boots from the factory partition. 4 MB to fit the app plus the
+# VBA-Next core, the embedded GB2312 CJK font and FATFS codepage-936 tables.
+#
+# Name,     Type, SubType, Offset,    Size,    Flags
+nvs,        data, nvs,     0x9000,    0x4000,
+otadata,    data, ota,     0xD000,    0x2000,
+factory,    app,  factory, 0x10000,   0x400000,
+# Test ROM lives here (flashed separately); vgba_run reads it via esp_partition
+# when given the path "flash:romdata". 8 MB fits any common GBA ROM.
+romdata,    data, 0x40,    0x410000,  0x800000,

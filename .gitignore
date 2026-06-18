@@ -1,0 +1,20 @@
+# ESP-IDF build output
+build/
+**/build/
+
+# ESP-IDF generated / downloaded
+sdkconfig.old
+managed_components/
+dependencies.lock
+
+# Flashing / logs
+*.bin.bak
+*.log
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*~

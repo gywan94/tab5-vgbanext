@@ -1,0 +1,1451 @@
+﻿Executing action: all (aliases: build)
+Running ninja in directory C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build
+Executing "ninja all"...
+[0/1] Re-running CMake...
+
+-- Minimal build - OFF
+-- ccache will be used for faster recompilation
+-- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32p4
+NOTICE: Processing 2 dependencies:
+
+NOTICE: [1/2] espressif/esp_lcd_touch (1.2.1)
+
+NOTICE: [2/2] idf (5.5.2)
+
+-- ESP-TEE is currently supported only on the esp32c6;esp32h2;esp32c5 SoCs
+-- Project sdkconfig file C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/sdkconfig
+Loading defaults file C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/sdkconfig.defaults...
+
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/riscv/ld/rom.api.ld
+-- USING O3
+-- App "vgba_tab5_app" version: 1
+-- Adding linker script C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.api.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.rvfp.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.wdt.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.systimer.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.version.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.libc.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.libc-suboptimal_for_misaligned_mem.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom/esp32p4/ld/esp32p4.rom.newlib.ld
+-- Adding linker script C:/Espressif/frameworks/esp-idf-v5.5.2/components/soc/esp32p4/ld/esp32p4.peripherals.ld
+-- Components: app_common app_trace app_update audio bootloader bootloader_support bsp bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_cam esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_isp esp_driver_jpeg esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_ppa esp_driver_rmt esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_touch_sens esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esp_wifi espcoredump espressif__esp_codec_dev espressif__esp_lcd_touch espressif__esp_lcd_touch_st7123 esptool_py fatfs file_browser freertos gamepad hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider odroid openthread partition_table ppa_engine protobuf-c protocomm pthread riscv rt sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vbanext vfs vgba_run wear_levelling wifi_provisioning wpa_supplicant
+-- Component paths: C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/app_common C:/Espressif/frameworks/esp-idf-v5.5.2/components/app_trace C:/Espressif/frameworks/esp-idf-v5.5.2/components/app_update C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/audio C:/Espressif/frameworks/esp-idf-v5.5.2/components/bootloader C:/Espressif/frameworks/esp-idf-v5.5.2/components/bootloader_support C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/bsp C:/Espressif/frameworks/esp-idf-v5.5.2/components/bt C:/Espressif/frameworks/esp-idf-v5.5.2/components/cmock C:/Espressif/frameworks/esp-idf-v5.5.2/components/console C:/Espressif/frameworks/esp-idf-v5.5.2/components/cxx C:/Espressif/frameworks/esp-idf-v5.5.2/components/driver C:/Espressif/frameworks/esp-idf-v5.5.2/components/efuse C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp-tls C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_adc C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_app_format C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_bootloader_format C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_coex C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_common C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_ana_cmpr C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_bitscrambler C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_cam C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_dac C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_gpio C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_gptimer C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_i2c C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_i2s C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_isp C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_jpeg C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_ledc C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_mcpwm C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_parlio C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_pcnt C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_ppa C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_rmt C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdio C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdm C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdmmc C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_sdspi C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_spi C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_touch_sens C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_tsens C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_twai C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_uart C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_driver_usb_serial_jtag C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_eth C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_event C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_gdbstub C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hid C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_http_client C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_http_server C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_https_ota C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_https_server C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_hw_support C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_lcd C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_local_ctrl C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_mm C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_netif C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_netif_stack C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_partition C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_phy C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_pm C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_psram C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_ringbuf C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_rom C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_security C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_system C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_timer C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_vfs_console C:/Espressif/frameworks/esp-idf-v5.5.2/components/esp_wifi C:/Espressif/frameworks/esp-idf-v5.5.2/components/espcoredump C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/espressif__esp_codec_dev C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/managed_components/espressif__esp_lcd_touch C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/espressif__esp_lcd_touch_st7123 C:/Espressif/frameworks/esp-idf-v5.5.2/components/esptool_py C:/Espressif/frameworks/esp-idf-v5.5.2/components/fatfs C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/file_browser C:/Espressif/frameworks/esp-idf-v5.5.2/components/freertos C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/gamepad C:/Espressif/frameworks/esp-idf-v5.5.2/components/hal C:/Espressif/frameworks/esp-idf-v5.5.2/components/heap C:/Espressif/frameworks/esp-idf-v5.5.2/components/http_parser C:/Espressif/frameworks/esp-idf-v5.5.2/components/idf_test C:/Espressif/frameworks/esp-idf-v5.5.2/components/ieee802154 C:/Espressif/frameworks/esp-idf-v5.5.2/components/json C:/Espressif/frameworks/esp-idf-v5.5.2/components/log C:/Espressif/frameworks/esp-idf-v5.5.2/components/lwip C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/main C:/Espressif/frameworks/esp-idf-v5.5.2/components/mbedtls C:/Espressif/frameworks/esp-idf-v5.5.2/components/mqtt C:/Espressif/frameworks/esp-idf-v5.5.2/components/newlib C:/Espressif/frameworks/esp-idf-v5.5.2/components/nvs_flash C:/Espressif/frameworks/esp-idf-v5.5.2/components/nvs_sec_provider C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/odroid C:/Espressif/frameworks/esp-idf-v5.5.2/components/openthread C:/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/ppa_engine C:/Espressif/frameworks/esp-idf-v5.5.2/components/protobuf-c C:/Espressif/frameworks/esp-idf-v5.5.2/components/protocomm C:/Espressif/frameworks/esp-idf-v5.5.2/components/pthread C:/Espressif/frameworks/esp-idf-v5.5.2/components/riscv C:/Espressif/frameworks/esp-idf-v5.5.2/components/rt C:/Espressif/frameworks/esp-idf-v5.5.2/components/sdmmc C:/Espressif/frameworks/esp-idf-v5.5.2/components/soc C:/Espressif/frameworks/esp-idf-v5.5.2/components/spi_flash C:/Espressif/frameworks/esp-idf-v5.5.2/components/spiffs C:/Espressif/frameworks/esp-idf-v5.5.2/components/tcp_transport C:/Espressif/frameworks/esp-idf-v5.5.2/components/ulp C:/Espressif/frameworks/esp-idf-v5.5.2/components/unity C:/Espressif/frameworks/esp-idf-v5.5.2/components/usb C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/vbanext C:/Espressif/frameworks/esp-idf-v5.5.2/components/vfs C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/vgba_run C:/Espressif/frameworks/esp-idf-v5.5.2/components/wear_levelling C:/Espressif/frameworks/esp-idf-v5.5.2/components/wifi_provisioning C:/Espressif/frameworks/esp-idf-v5.5.2/components/wpa_supplicant
+-- Configuring done (12.9s)
+-- Generating done (1.2s)
+-- Build files have been written to: C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build
+[1/155] Building C object esp-idf/vbanext/CMakeFiles/__idf_vbanext.dir/C_/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/vba-next/src/system.c.obj
+
+[2/155] Linking C static library esp-idf\console\libconsole.a
+
+[3/155] Building C object esp-idf/vbanext/CMakeFiles/__idf_vbanext.dir/C_/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/vba-next/libretro-common/memalign.c.obj
+
+[4/155] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_compat.c.obj
+
+[5/155] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_runner.c.obj
+
+[6/155] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_utils_memory.c.obj
+
+[7/155] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/port/esp/unity_utils_memory_esp.c.obj
+
+[8/155] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_utils_freertos.c.obj
+
+[9/155] Building C object esp-idf/vbanext/CMakeFiles/__idf_vbanext.dir/C_/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/vba-next/src/memory.c.obj
+
+[10/155] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_port_esp32.c.obj
+
+[11/155] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_utils_cache.c.obj
+
+[12/155] Building C object esp-idf/vbanext/CMakeFiles/__idf_vbanext.dir/C_/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/vba-next/libretro/libretro.c.obj
+
+[13/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_ccm.c.obj
+
+[14/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_af.c.obj
+
+[15/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_core.c.obj
+
+[16/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_bf.c.obj
+
+[17/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_gamma.c.obj
+
+[18/155] Building C object esp-idf/vbanext/CMakeFiles/__idf_vbanext.dir/C_/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/vba-next/src/sound.c.obj
+
+[19/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_awb.c.obj
+
+[20/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_ae.c.obj
+
+[21/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_demosaic.c.obj
+
+[22/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_blc.c.obj
+
+[23/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_hist.c.obj
+
+[24/155] Linking C static library esp-idf\protobuf-c\libprotobuf-c.a
+
+[25/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_sharpen.c.obj
+
+[26/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_color.c.obj
+
+[27/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/sec0.pb-c.c.obj
+
+[28/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/constants.pb-c.c.obj
+
+[29/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_lsc.c.obj
+
+[30/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/sec1.pb-c.c.obj
+
+[31/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/session.pb-c.c.obj
+
+[32/155] Building C object esp-idf/esp_driver_isp/CMakeFiles/__idf_esp_driver_isp.dir/src/isp_wbg.c.obj
+
+[33/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/proto-c/sec2.pb-c.c.obj
+
+[34/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/common/protocomm.c.obj
+
+[35/155] Linking C static library esp-idf\odroid\libodroid.a
+
+[36/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/transports/protocomm_httpd.c.obj
+
+[37/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/security/security0.c.obj
+
+[38/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/transports/protocomm_console.c.obj
+
+[39/155] Building C object esp-idf/esp_https_server/CMakeFiles/__idf_esp_https_server.dir/src/https_server.c.obj
+
+[40/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/crypto/srp6a/esp_srp_mpi.c.obj
+
+[41/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/security/security1.c.obj
+
+[42/155] Linking C static library esp-idf\unity\libunity.a
+
+[43/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/crypto/srp6a/esp_srp.c.obj
+
+[44/155] Building C object esp-idf/protocomm/CMakeFiles/__idf_protocomm.dir/src/security/security2.c.obj
+
+[45/155] Building C object esp-idf/vgba_run/CMakeFiles/__idf_vgba_run.dir/vgba_run.c.obj
+
+[46/155] Linking C static library esp-idf\esp_driver_isp\libesp_driver_isp.a
+
+[47/155] Building C object esp-idf/app_trace/CMakeFiles/__idf_app_trace.dir/host_file_io.c.obj
+
+[48/155] Building C object esp-idf/app_common/CMakeFiles/__idf_app_common.dir/app_common.c.obj
+
+[49/155] Building C object esp-idf/app_trace/CMakeFiles/__idf_app_trace.dir/app_trace.c.obj
+
+[50/155] Building C object esp-idf/app_trace/CMakeFiles/__idf_app_trace.dir/app_trace_util.c.obj
+
+[51/155] Building C object esp-idf/cmock/CMakeFiles/__idf_cmock.dir/CMock/src/cmock.c.obj
+
+[52/155] Building C object esp-idf/app_trace/CMakeFiles/__idf_app_trace.dir/port/port_uart.c.obj
+
+[53/155] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/esp_cam_ctlr.c.obj
+
+[54/155] Building C object esp-idf/file_browser/CMakeFiles/__idf_file_browser.dir/file_browser.c.obj
+
+C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/file_browser/file_browser.c:268:9: warning: "LIST_H" redefined
+  268 | #define LIST_H     (NH - HEADER_H - FOOTER_H)
+      |         ^~~~~~
+In file included from C:/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/FreeRTOS-Kernel/include/freertos/task.h:41,
+                 from C:/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/esp_additions/include/freertos/idf_additions.h:20,
+                 from C:/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/FreeRTOS-Kernel/include/freertos/FreeRTOS.h:1533,
+                 from C:/Espressif/frameworks/esp-idf-v5.5.2/components/sdmmc/include/sd_protocol_types.h:29,
+                 from C:/Espressif/frameworks/esp-idf-v5.5.2/components/fatfs/vfs/esp_vfs_fat.h:10,
+                 from C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/file_browser/file_browser.c:10:
+C:/Espressif/frameworks/esp-idf-v5.5.2/components/freertos/FreeRTOS-Kernel/include/freertos/list.h:63:9: note: this is the location of the previous definition
+   63 | #define LIST_H
+      |         ^~~~~~
+C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/file_browser/file_browser.c:653:13: warning: 'handle_touch' defined but not used [-Wunused-function]
+  653 | static void handle_touch(void)
+      |             ^~~~~~~~~~~~
+C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/file_browser/file_browser.c:536:13: warning: 'draw_ui' defined but not used [-Wunused-function]
+
+  536 | static void draw_ui(void)
+
+      |             ^~~~~~~
+
+C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/components/file_browser/file_browser.c:236:13: warning: 'draw_string_centered' defined but not used [-Wunused-function]
+
+  236 | static void draw_string_centered(int y, const char *str, uint16_t fg, uint16_t bg)
+
+      |             ^~~~~~~~~~~~~~~~~~~~
+
+[55/155] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/dvp/src/esp_cam_ctlr_dvp_gdma.c.obj
+
+[56/155] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/dvp_share_ctrl.c.obj
+
+[57/155] Building C object esp-idf/esp_driver_jpeg/CMakeFiles/__idf_esp_driver_jpeg.dir/jpeg_param.c.obj
+
+[58/155] Building C object esp-idf/esp_driver_jpeg/CMakeFiles/__idf_esp_driver_jpeg.dir/jpeg_common.c.obj
+
+[59/155] Building C object esp-idf/esp_driver_jpeg/CMakeFiles/__idf_esp_driver_jpeg.dir/jpeg_parse_marker.c.obj
+
+[60/155] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/csi/src/esp_cam_ctlr_csi.c.obj
+
+[61/155] Building C object esp-idf/esp_driver_jpeg/CMakeFiles/__idf_esp_driver_jpeg.dir/jpeg_emit_marker.c.obj
+
+[62/155] Building C object esp-idf/file_browser/CMakeFiles/__idf_file_browser.dir/cjk_font16.c.obj
+
+[63/155] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/dvp/src/esp_cam_ctlr_dvp_cam.c.obj
+
+[64/155] Building C object esp-idf/esp_driver_cam/CMakeFiles/__idf_esp_driver_cam.dir/isp_dvp/src/esp_cam_ctlr_isp_dvp.c.obj
+
+[65/155] Building C object esp-idf/esp_driver_jpeg/CMakeFiles/__idf_esp_driver_jpeg.dir/jpeg_decode.c.obj
+
+[66/155] Building C object esp-idf/esp_driver_jpeg/CMakeFiles/__idf_esp_driver_jpeg.dir/jpeg_encode.c.obj
+
+[67/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_netif_glue.c.obj
+
+[68/155] Building C object esp-idf/esp_driver_touch_sens/CMakeFiles/__idf_esp_driver_touch_sens.dir/common/touch_sens_common.c.obj
+
+[69/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth.c.obj
+
+[70/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_generic.c.obj
+
+[71/155] Building C object esp-idf/esp_driver_touch_sens/CMakeFiles/__idf_esp_driver_touch_sens.dir/hw_ver3/touch_version_specific.c.obj
+
+[72/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_dp83848.c.obj
+
+[73/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_802_3.c.obj
+
+[74/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/mac/esp_eth_mac_esp_dma.c.obj
+
+[75/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/mac/esp_eth_mac_esp_gpio.c.obj
+
+[76/155] Linking C static library esp-idf\esp_https_server\libesp_https_server.a
+
+[77/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_ip101.c.obj
+
+[78/155] Linking C static library esp-idf\protocomm\libprotocomm.a
+
+[79/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_ksz80xx.c.obj
+
+[80/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/mac/esp_eth_mac_esp.c.obj
+
+[81/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_lan87xx.c.obj
+
+[82/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_init.c.obj
+
+[83/155] Building C object esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/phy/esp_eth_phy_rtl8201.c.obj
+
+[84/155] Building C object esp-idf/esp_hid/CMakeFiles/__idf_esp_hid.dir/src/esp_hidd.c.obj
+
+[85/155] Building C object esp-idf/esp_hid/CMakeFiles/__idf_esp_hid.dir/src/esp_hid_common.c.obj
+
+[86/155] Building C object esp-idf/esp_hid/CMakeFiles/__idf_esp_hid.dir/src/esp_hidh.c.obj
+
+[87/155] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/proto-c/esp_local_ctrl.pb-c.c.obj
+
+[88/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_sha.c.obj
+
+[89/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_crc.c.obj
+
+[90/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_common.c.obj
+
+[91/155] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/src/esp_local_ctrl_handler.c.obj
+
+[92/155] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/src/esp_local_ctrl_transport_httpd.c.obj
+
+[93/155] Building C object esp-idf/esp_local_ctrl/CMakeFiles/__idf_esp_local_ctrl.dir/src/esp_local_ctrl.c.obj
+
+[94/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_uart.c.obj
+
+[95/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_binary.c.obj
+
+[96/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_elf.c.obj
+
+[97/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/core_dump_flash.c.obj
+
+[98/155] Building C object esp-idf/espcoredump/CMakeFiles/__idf_espcoredump.dir/src/port/riscv/core_dump_port.c.obj
+
+[99/155] Building C object esp-idf/json/CMakeFiles/__idf_json.dir/cJSON/cJSON_Utils.c.obj
+
+[100/155] Building C object esp-idf/nvs_sec_provider/CMakeFiles/__idf_nvs_sec_provider.dir/nvs_sec_provider.c.obj
+
+[101/155] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/lib/mqtt_outbox.c.obj
+
+[102/155] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/lib/platform_esp32_idf.c.obj
+
+[103/155] Building C object esp-idf/json/CMakeFiles/__idf_json.dir/cJSON/cJSON.c.obj
+
+[104/155] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/lib/mqtt_msg.c.obj
+
+[105/155] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_cache.c.obj
+
+[106/155] Building C object esp-idf/rt/CMakeFiles/__idf_rt.dir/FreeRTOS_POSIX_utils.c.obj
+
+[107/155] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs_api.c.obj
+
+[108/155] Building C object esp-idf/rt/CMakeFiles/__idf_rt.dir/FreeRTOS_POSIX_mqueue.c.obj
+
+[109/155] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_gc.c.obj
+
+[110/155] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_check.c.obj
+
+[111/155] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_hydrogen.c.obj
+
+[112/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/usb_private.c.obj
+
+[113/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/usb_helpers.c.obj
+
+[114/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/hub.c.obj
+
+[115/155] Linking C static library esp-idf\app_common\libapp_common.a
+
+[116/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/enum.c.obj
+
+[117/155] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/esp_spiffs.c.obj
+
+[118/155] Linking C static library esp-idf\file_browser\libfile_browser.a
+
+[119/155] Linking C static library esp-idf\app_trace\libapp_trace.a
+
+[120/155] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/mqtt_client.c.obj
+
+[121/155] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_nucleus.c.obj
+
+[122/155] Linking C static library esp-idf\cmock\libcmock.a
+
+[123/155] Linking C static library esp-idf\esp_driver_cam\libesp_driver_cam.a
+
+[124/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/usb_phy.c.obj
+
+[125/155] Linking C static library esp-idf\esp_driver_jpeg\libesp_driver_jpeg.a
+
+[126/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/usb_host.c.obj
+
+[127/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/usbh.c.obj
+
+[128/155] Linking C static library esp-idf\esp_driver_touch_sens\libesp_driver_touch_sens.a
+
+[129/155] Linking C static library esp-idf\json\libjson.a
+
+[130/155] Linking C static library esp-idf\esp_hid\libesp_hid.a
+
+[131/155] Linking C static library esp-idf\esp_local_ctrl\libesp_local_ctrl.a
+
+[132/155] Linking C static library esp-idf\esp_eth\libesp_eth.a
+
+[133/155] Linking C static library esp-idf\nvs_sec_provider\libnvs_sec_provider.a
+
+[134/155] Linking C static library esp-idf\mqtt\libmqtt.a
+
+[135/155] Linking C static library esp-idf\espcoredump\libespcoredump.a
+
+[136/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/hcd_dwc.c.obj
+
+[137/155] Linking C static library esp-idf\rt\librt.a
+
+[138/155] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+
+[139/155] Linking C static library esp-idf\spiffs\libspiffs.a
+
+[140/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/ext_hub.c.obj
+
+[141/155] Building C object esp-idf/usb/CMakeFiles/__idf_usb.dir/ext_port.c.obj
+
+[142/155] Linking C static library esp-idf\usb\libusb.a
+
+[143/155] Performing build step for 'bootloader'
+
+[1/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/util.c.obj
+
+[2/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/util.c.obj
+
+[3/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_crc.c.obj
+
+[4/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_format_text.c.obj
+
+[5/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_lock.c.obj
+
+[6/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_timestamp_common.c.obj
+
+[7/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log.c.obj
+
+[8/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/noos/log_timestamp.c.obj
+
+[9/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/log_print.c.obj
+
+[10/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_sys.c.obj
+
+[11/133] Building C object esp-idf/log/CMakeFiles/__idf_log.dir/src/buffer/log_buffers.c.obj
+
+[12/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_uart.c.obj
+
+[13/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_spiflash.c.obj
+
+[14/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_print.c.obj
+
+[15/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_efuse.c.obj
+
+[16/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_gpio.c.obj
+
+[17/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_clic.c.obj
+
+[18/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_systimer.c.obj
+
+[19/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_regi2c_esp32p4.c.obj
+
+[20/133] Linking C static library esp-idf\log\liblog.a
+
+[21/133] Building C object esp-idf/esp_rom/CMakeFiles/__idf_esp_rom.dir/patches/esp_rom_wdt.c.obj
+
+[22/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/esp_cpu_intr.c.obj
+
+[23/133] Building C object esp-idf/esp_common/CMakeFiles/__idf_esp_common.dir/src/esp_err_to_name.c.obj
+
+[24/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_memory_utils.c.obj
+
+[25/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/cpu.c.obj
+
+[26/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/cpu_region_protect.c.obj
+
+[27/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/pmu_param.c.obj
+
+[28/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/chip_info.c.obj
+
+[29/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/rtc_clk_init.c.obj
+
+[30/133] Building C object esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj
+
+[31/133] Linking C static library esp-idf\esp_rom\libesp_rom.a
+
+[32/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/pmu_init.c.obj
+
+[33/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32p4/esp_efuse_fields.c.obj
+
+[34/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32p4/esp_efuse_table.c.obj
+
+[35/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32p4/esp_efuse_utility.c.obj
+
+[36/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/rtc_time.c.obj
+
+[37/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/esp32p4/esp_efuse_rtc_calib.c.obj
+
+[38/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_api.c.obj
+
+[39/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_fields.c.obj
+
+[40/133] Linking C static library esp-idf\esp_common\libesp_common.a
+
+[41/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/rtc_clk.c.obj
+
+[42/133] Building C object esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32p4/pmu_sleep.c.obj
+
+[43/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_mem.c.obj
+
+[44/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/esp_efuse_utility.c.obj
+
+[45/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random.c.obj
+
+[46/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_init.c.obj
+
+[47/133] Building C object esp-idf/efuse/CMakeFiles/__idf_efuse.dir/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c.obj
+
+[48/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_efuse.c.obj
+
+[49/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/secure_boot.c.obj
+
+[50/133] Linking C static library esp-idf\esp_hw_support\libesp_hw_support.a
+
+[51/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj
+
+[52/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common_loader.c.obj
+
+[53/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_encrypt.c.obj
+
+[54/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_random_esp32p4.c.obj
+
+[55/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/flash_partitions.c.obj
+
+[56/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_sha.c.obj
+
+[57/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/flash_qio_mode.c.obj
+
+[58/133] Linking C static library esp-idf\esp_system\libesp_system.a
+
+[59/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_clock_loader.c.obj
+
+[60/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32p4/bootloader_soc.c.obj
+
+[61/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console_loader.c.obj
+
+[62/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash.c.obj
+
+[63/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_panic.c.obj
+
+[64/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_console.c.obj
+
+[65/133] Building C object esp-idf/esp_bootloader_format/CMakeFiles/__idf_esp_bootloader_format.dir/esp_bootloader_desc.c.obj
+
+[66/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/lldesc.c.obj
+
+[67/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/bootloader_flash/src/bootloader_flash_config_esp32p4.c.obj
+
+[68/133] Linking C static library esp-idf\efuse\libefuse.a
+
+[69/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_init.c.obj
+
+[70/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/dport_access_common.c.obj
+
+[71/133] Building C object esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_wrap.c.obj
+
+[72/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/uart_periph.c.obj
+
+[73/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/interrupts.c.obj
+
+[74/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/adc_periph.c.obj
+
+[75/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/gpio_periph.c.obj
+
+[76/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/ana_cmpr_periph.c.obj
+
+[77/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/dedic_gpio_periph.c.obj
+
+[78/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp32p4/bootloader_esp32p4.c.obj
+
+[79/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/debug_probe_periph.c.obj
+
+[80/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_utility.c.obj
+
+[81/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/emac_periph.c.obj
+
+[82/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/dma2d_periph.c.obj
+
+[83/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/gdma_periph.c.obj
+
+[84/133] Building C object esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/esp_image_format.c.obj
+
+[85/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/spi_periph.c.obj
+
+[86/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/etm_periph.c.obj
+
+[87/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/ledc_periph.c.obj
+
+[88/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/isp_periph.c.obj
+
+[89/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/rmt_periph.c.obj
+
+[90/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/sdm_periph.c.obj
+
+[91/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/pcnt_periph.c.obj
+
+[92/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/i2c_periph.c.obj
+
+[93/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/i2s_periph.c.obj
+
+[94/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/temperature_sensor_periph.c.obj
+
+[95/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/lcd_periph.c.obj
+
+[96/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/i3c_master_periph.c.obj
+
+[97/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/timer_periph.c.obj
+
+[98/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/mipi_csi_periph.c.obj
+
+[99/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/touch_sensor_periph.c.obj
+
+[100/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/mipi_dsi_periph.c.obj
+
+[101/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/sdmmc_periph.c.obj
+
+[102/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/mpi_periph.c.obj
+
+[103/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/parlio_periph.c.obj
+
+[104/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/mcpwm_periph.c.obj
+
+[105/133] Linking C static library esp-idf\bootloader_support\libbootloader_support.a
+
+[106/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/twai_periph.c.obj
+
+[107/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/wdt_periph.c.obj
+
+[108/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/usb_dwc_periph.c.obj
+
+[109/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/cam_periph.c.obj
+
+[110/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/power_supply_periph.c.obj
+
+[111/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/rtc_io_periph.c.obj
+
+[112/133] Building C object esp-idf/micro-ecc/CMakeFiles/__idf_micro-ecc.dir/uECC_verify_antifault.c.obj
+
+[113/133] Generating project_elf_src_esp32p4.c
+
+[114/133] Building C object esp-idf/riscv/CMakeFiles/__idf_riscv.dir/rv_utils.c.obj
+
+[115/133] Building C object esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32p4/system_retention_periph.c.obj
+
+[116/133] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/hal_utils.c.obj
+
+[117/133] Linking C static library esp-idf\esp_bootloader_format\libesp_bootloader_format.a
+
+[118/133] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/lp_timer_hal.c.obj
+
+[119/133] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/efuse_hal.c.obj
+
+[120/133] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32p4/efuse_hal.c.obj
+
+[121/133] Building C object CMakeFiles/bootloader.elf.dir/project_elf_src_esp32p4.c.obj
+
+[122/133] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/bootloader_start.c.obj
+
+[123/133] Linking C static library esp-idf\spi_flash\libspi_flash.a
+
+[124/133] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/mmu_hal.c.obj
+
+[125/133] Linking C static library esp-idf\micro-ecc\libmicro-ecc.a
+
+[126/133] Building C object esp-idf/hal/CMakeFiles/__idf_hal.dir/cache_hal.c.obj
+
+[127/133] Linking C static library esp-idf\soc\libsoc.a
+
+[128/133] Linking C static library esp-idf\riscv\libriscv.a
+
+[129/133] Linking C static library esp-idf\hal\libhal.a
+
+[130/133] Linking C static library esp-idf\main\libmain.a
+
+[131/133] Linking C executable bootloader.elf
+
+[132/133] Generating binary image from built executable
+
+esptool.py v4.12.dev2
+
+
+Creating esp32p4 image...
+
+
+Merged 2 ELF sections
+
+
+Successfully created esp32p4 image.
+
+
+Generated C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/bootloader/bootloader.bin
+
+[133/133] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgbanext\apps\vgba_tab5\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.5.2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x2000 C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/bootloader/bootloader.bin"
+
+
+Bootloader binary size 0x4fe0 bytes. 0x1020 bytes (17%) free.
+
+
+
+[144/155] No install step for 'bootloader'
+
+[145/155] Completed 'bootloader'
+
+[146/155] Building C object esp-idf/vbanext/CMakeFiles/__idf_vbanext.dir/C_/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/vba-next/src/gba.c.obj
+
+[147/155] Linking C static library esp-idf\vbanext\libvbanext.a
+
+[148/155] Linking C static library esp-idf\vgba_run\libvgba_run.a
+
+[149/155] Linking C static library esp-idf\main\libmain.a
+
+[150/155] Generating esp-idf/esp_system/ld/sections.ld
+
+[151/155] Building C object CMakeFiles/vgba_tab5_app.elf.dir/project_elf_src_esp32p4.c.obj
+
+[152/155] Linking CXX executable vgba_tab5_app.elf
+
+FAILED: vgba_tab5_app.elf 
+
+C:\WINDOWS\system32\cmd.exe /C "cd . && C:\Espressif\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-g++.exe -march=rv32imafc_zicsr_zifencei_xesploop_xespv -mabi=ilp32f -nostartfiles -march=rv32imafc_zicsr_zifencei_xesploop_xespv -mabi=ilp32f    -Wl,--cref -Wl,--defsym=IDF_TARGET_ESP32P4=0 -Wl,--Map=C:/Users/gywan/Documents/trae-project/tab5-retro/tab5-vgbanext/apps/vgba_tab5/build/vgba_tab5_app.map -Wl,--no-warn-rwx-segments -Wl,--orphan-handling=warn -fno-rtti -fno-lto -Wl,--gc-sections -Wl,--warn-common -T rom.api.ld -T esp32p4.peripherals.ld -T esp32p4.rom.ld -T esp32p4.rom.api.ld -T esp32p4.rom.rvfp.ld -T esp32p4.rom.wdt.ld -T esp32p4.rom.systimer.ld -T esp32p4.rom.version.ld -T esp32p4.rom.libc.ld -T esp32p4.rom.libc-suboptimal_for_misaligned_mem.ld -T esp32p4.rom.newlib.ld -T memory.ld -T sections.ld -Wl,--enable-non-contiguous-regions @CMakeFiles\vgba_tab5_app.elf.rsp -o vgba_tab5_app.elf && cd ."
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_burn_counter' from `esp-idf/efuse/libefuse.a(esp_efuse_utility.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_resume_cores' from `esp-idf/esp_system/libesp_system.a(cpu_start.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_cpu_inited' from `esp-idf/esp_system/libesp_system.a(cpu_start.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_cpu_up' from `esp-idf/esp_system/libesp_system.a(cpu_start.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_usbserial_timeout' from `esp-idf/esp_system/libesp_system.a(panic.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_panic_abort_details' from `esp-idf/esp_system/libesp_system.a(panic.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_panic_abort' from `esp-idf/esp_system/libesp_system.a(panic.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_system_full_inited' from `esp-idf/esp_system/libesp_system.a(startup.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_system_inited' from `esp-idf/esp_system/libesp_system.a(startup.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_startup_time' from `esp-idf/esp_system/libesp_system.a(startup.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_exc_frames' from `esp-idf/esp_system/libesp_system.a(panic_handler.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_stall_state' from `esp-idf/esp_system/libesp_system.a(esp_ipc_isr.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.esp_ipc_func_arg' from `esp-idf/esp_system/libesp_system.a(esp_ipc_isr.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.esp_ipc_func' from `esp-idf/esp_system/libesp_system.a(esp_ipc_isr.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.esp_ipc_isr_start_fl' from `esp-idf/esp_system/libesp_system.a(esp_ipc_isr.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.ctx' from `esp-idf/hal/libhal.a(cache_hal.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.base.0' from `esp-idf/log/liblog.a(log_timestamp.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.esp_log_cache_enabled' from `esp-idf/log/liblog.a(util.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_log_tags' from `esp-idf/log/liblog.a(log_linked_list.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_log_cache_entry_count' from `esp-idf/log/liblog.a(log_binary_heap.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_log_cache_max_generation' from `esp-idf/log/liblog.a(log_binary_heap.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_log_mutex' from `esp-idf/log/liblog.a(log_lock.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.alloc_failed_callback' from `esp-idf/heap/libheap.a(heap_caps.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.registered_heaps' from `esp-idf/heap/libheap.a(heap_caps_init.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.non_iram_int_disabled_flag' from `esp-idf/esp_hw_support/libesp_hw_support.a(intr_alloc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.non_iram_int_disabled' from `esp-idf/esp_hw_support/libesp_hw_support.a(intr_alloc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.non_iram_int_mask' from `esp-idf/esp_hw_support/libesp_hw_support.a(intr_alloc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.vector_desc_head' from `esp-idf/esp_hw_support/libesp_hw_support.a(intr_alloc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_flash_best_timing_tuning_config' from `esp-idf/esp_hw_support/libesp_hw_support.a(mspi_timing_by_flash_delay.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_brownout_callback' from `esp-idf/esp_hw_support/libesp_hw_support.a(brownout.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_cur_cpll_freq' from `esp-idf/esp_hw_support/libesp_hw_support.a(rtc_clk.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_i2c_saradc_enable_cnt' from `esp-idf/esp_hw_support/libesp_hw_support.a(regi2c_ctrl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_pmu_sleep_regdma_backup_enabled' from `esp-idf/esp_hw_support/libesp_hw_support.a(pmu_sleep.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_sar_power_on_cnt' from `esp-idf/esp_hw_support/libesp_hw_support.a(sar_periph_ctrl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_calibrated_freq' from `esp-idf/esp_hw_support/libesp_hw_support.a(esp_clk_tree_common.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pau_hal.1' from `esp-idf/esp_hw_support/libesp_hw_support.a(pau_regdma.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_other_cpu_startup_done' from `esp-idf/freertos/libfreertos.a(app_startup.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.uxSchedulerSuspended' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xIdleTaskHandle' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xNextTaskUnblockTime' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.uxTaskNumber' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xNumOfOverflows' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xYieldPending' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xPendedTicks' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xSchedulerRunning' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.uxTopReadyPriority' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xTickCount' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.uxCurrentNumberOfTasks' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.uxDeletedTasksWaitingCleanUp' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pxOverflowDelayedTaskList' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pxDelayedTaskList' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pxCurrentTCBs' from `esp-idf/freertos/libfreertos.a(tasks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xIsrStackBottom' from `esp-idf/freertos/libfreertos.a(port.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xIsrStackTop' from `esp-idf/freertos/libfreertos.a(port.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xPortSwitchFlag' from `esp-idf/freertos/libfreertos.a(port.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.port_uxOldInterruptState' from `esp-idf/freertos/libfreertos.a(port.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.port_uxCriticalNesting' from `esp-idf/freertos/libfreertos.a(port.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.port_uxInterruptNesting' from `esp-idf/freertos/libfreertos.a(port.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.port_xSchedulerRunning' from `esp-idf/freertos/libfreertos.a(port.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_handled_systicks' from `esp-idf/freertos/libfreertos.a(port_systick.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_time_lock' from `esp-idf/newlib/libnewlib.a(time.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_adjtime_total_correction_us' from `esp-idf/newlib/libnewlib.a(time.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_adjtime_start_us' from `esp-idf/newlib/libnewlib.a(time.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_boot_time_lock' from `esp-idf/newlib/libnewlib.a(esp_time_impl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_microseconds_offset' from `esp-idf/newlib/libnewlib.a(esp_time_impl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_keys' from `esp-idf/pthread/libpthread.a(pthread_local_storage.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_correction_us' from `esp-idf/esp_timer/libesp_timer.a(system_time.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_registered_select_num' from `esp-idf/esp_driver_uart/libesp_driver_uart.a(uart_vfs.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_registered_selects' from `esp-idf/esp_driver_uart/libesp_driver_uart.a(uart_vfs.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.remaining_allowed_no_sof_ticks' from `esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a(usb_serial_jtag_connection_monitor.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_usb_serial_jtag_conn_status' from `esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a(usb_serial_jtag_connection_monitor.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_registered_select_num' from `esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a(usb_serial_jtag_vfs.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_registered_selects' from `esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a(usb_serial_jtag_vfs.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.p_usb_serial_jtag_obj' from `esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a(usb_serial_jtag.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_open_count' from `esp-idf/esp_vfs_console/libesp_vfs_console.a(vfs_console.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.vfs_console' from `esp-idf/esp_vfs_console/libesp_vfs_console.a(vfs_console.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.primary_vfs' from `esp-idf/esp_vfs_console/libesp_vfs_console.a(vfs_console.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_fd_table_lock' from `esp-idf/vfs/libvfs.a(vfs.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_vfs_count' from `esp-idf/vfs/libvfs.a(vfs.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_fds' from `esp-idf/vfs/libvfs.a(nullfs.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.mode_reg.0' from `esp-idf/esp_psram/libesp_psram.a(esp_psram_impl_ap_hex.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_psram_size' from `esp-idf/esp_psram/libesp_psram.a(esp_psram_impl_ap_hex.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_rs_phase' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_have_frame' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_quit' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_rom' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_aud_rs' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_aud_n' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_aud_acc' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_fb' from `esp-idf/vgba_run/libvgba_run.a(vgba_run.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_video_frames' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_audio_frames' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.rom_size' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.has_frame' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.turbo_delay_counter' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.option_turboDelay' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.option_turboEnable' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.serialize_size' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.can_dupe' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.libretro_supports_bitmasks' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.environ_cb' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.audio_batch_cb' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.input_cb' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.poll_cb' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.video_cb' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.log_cb' from `esp-idf/vbanext/libvbanext.a(libretro.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cheatsCBATableGenerated' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.mirroringEnable' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.enableRtc' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuSaveType' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.skipBios' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.useBios' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.saveType' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuDmaRunning' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuDmaPC' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuDmaLast' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuDmaCount' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer3ClockReload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer3Reload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer3Ticks' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer3On' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer3Value' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer2ClockReload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer2Reload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer2Ticks' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer2On' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer2Value' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer1ClockReload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer1Reload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer1Ticks' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer1On' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer1Value' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer0ClockReload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer0Reload' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer0Ticks' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer0On' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.stopState' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.gbaSaveType' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.gfxBG3Y' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.gfxBG3X' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.gfxBG2Y' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.gfxBG2X' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.gfxBG3Changed' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.gfxBG2Changed' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.joy' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.clockTicks' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.intState' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.IRQTicks' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuDmaTicksToUpdate' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.windowOn' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.fxOn' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma3Dest' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma3Source' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma2Dest' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma2Source' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma1Dest' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma1Source' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma0Dest' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma0Source' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timer0Value' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.timerOnOffDelay' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM3CNT_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM3CNT_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM3DAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM3DAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM3SAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM3SAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM2CNT_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM2CNT_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM2DAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM2DAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM2SAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM2SAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM1CNT_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM1CNT_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM1DAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM1DAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM1SAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM1SAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM0CNT_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM0CNT_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM0DAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM0DAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM0SAD_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.DM0SAD_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.COLY' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.COLEV' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BLDMOD' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG3Y_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG3Y_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG3X_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG3X_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG2Y_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG2Y_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG2X_H' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.BG2X_L' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.MOSAIC' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.V_FLAG' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.Z_FLAG' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.C_FLAG' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.N_FLAG' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.biosProtected' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuTotalTicks' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuPrefetch' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.holdState' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.cpuNextEvent' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.renderfunc_type' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.renderfunc_mode' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.paletteRAM' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.workRAM' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.internalRAM' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.ioMem' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.oam' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pix' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.vram' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.bios' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.rom' from `esp-idf/vbanext/libvbanext.a(gba.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.rtcEnabled' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.eepromInUse' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.eepromAddress' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.eepromBits' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.eepromByte' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.eepromMode' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.flashBank' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.flashReadState' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.flashState' from `esp-idf/vbanext/libvbanext.a(memory.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.mixer_samples_read' from `esp-idf/vbanext/libvbanext.a(sound.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pcm_synth' from `esp-idf/vbanext/libvbanext.a(sound.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_dragged' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_press_scroll' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_press_uy' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_touching' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_canvas' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_running' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_selected' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_scroll_offset' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_file_count' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_files' from `esp-idf/file_browser/libfile_browser.a(file_browser.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_custom_borders_cleared' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_display_mutex' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_timing_count' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_timing_pal_acc' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_timing_lcd_acc' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_timing_ppa_acc' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_emu_portrait' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ppa_out_size' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ppa_out_buf' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_backlight_init' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_fb_dirty' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_framebuffer' from `esp-idf/odroid/libodroid.a(odroid_display.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_usb_map_pid' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_usb_map_vid' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_usb_map_loaded' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_paddle_adc_handle' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.odroid_input_touch_buttons_disable' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.odroid_input_xy_menu_disable' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_gpio_pad_adc' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_gpio_pad_l2_stuck' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_gpio_pad_detected' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_touch_last_us' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_touch_volume' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_touch_menu' from `esp-idf/odroid/libodroid.a(odroid_input.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_mounted' from `esp-idf/odroid/libodroid.a(odroid_sdcard.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.cached.0' from `esp-idf/odroid/libodroid.a(odroid_vpad.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.last_us.1' from `esp-idf/odroid/libodroid.a(odroid_vpad.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_active' from `esp-idf/odroid/libodroid.a(odroid_vpad.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_buf' from `esp-idf/odroid/libodroid.a(odroid_vpad.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ctx' from `esp-idf/fatfs/libfatfs.a(vfs_fat_sdmmc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_impls' from `esp-idf/fatfs/libfatfs.a(diskio.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.Fsid' from `esp-idf/fatfs/libfatfs.a(ff.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.FatFs' from `esp-idf/fatfs/libfatfs.a(ff.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.Mutex' from `esp-idf/fatfs/libfatfs.a(ffsystem.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_disk_status_check_en' from `esp-idf/fatfs/libfatfs.a(diskio_sdmmc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_cards' from `esp-idf/fatfs/libfatfs.a(diskio_sdmmc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_fat_ctxs' from `esp-idf/fatfs/libfatfs.a(vfs_fat.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ppa_fill_client' from `esp-idf/ppa_engine/libppa_engine.a(ppa_engine.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ppa_blend_client' from `esp-idf/ppa_engine/libppa_engine.a(ppa_engine.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ppa_srm_client' from `esp-idf/ppa_engine/libppa_engine.a(ppa_engine.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_rate' from `esp-idf/audio/libaudio.a(audio.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_codec' from `esp-idf/audio/libaudio.a(audio.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_data_if' from `esp-idf/audio/libaudio.a(audio.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_rx' from `esp-idf/audio/libaudio.a(audio.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_tx' from `esp-idf/audio/libaudio.a(audio.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.last_warn.1' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.phy_chan.4' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_disp_panel' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_disp_io' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_dsi_bus' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__compound_literal.26' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__compound_literal.25' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__compound_literal.24' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__compound_literal.23' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.i2c_dev_handle_pi4ioe2' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.i2c_dev_handle_pi4ioe1' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_i2s_data_if' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_i2s_rx' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_i2s_tx' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_play_dev' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_tp' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_sys_i2c' from `esp-idf/bsp/libbsp.a(bsp_tab5.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__compound_literal.26' from `esp-idf/bsp/libbsp.a(esp_lcd_st7123.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__compound_literal.25' from `esp-idf/bsp/libbsp.a(esp_lcd_st7123.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__compound_literal.24' from `esp-idf/bsp/libbsp.a(esp_lcd_st7123.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_intr_handlers' from `esp-idf/riscv/libriscv.a(interrupt.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.curr_partition.0' from `esp-idf/app_update/libapp_update.a(esp_ota_ops.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_partition_list_lock' from `esp-idf/esp_partition/libesp_partition.a(partition.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_partition_list' from `esp-idf/esp_partition/libesp_partition.a(partition.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.map' from `esp-idf/bootloader_support/libbootloader_support.a(bootloader_flash.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_mmu_ctx' from `esp-idf/esp_mm/libesp_mm.a(esp_mmu_map.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.flash_erasing' from `esp-idf/spi_flash/libspi_flash.a(flash_brownout_hook.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.flash_brownout_needs_reset' from `esp-idf/spi_flash/libspi_flash.a(flash_brownout_hook.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_flash_op_complete' from `esp-idf/spi_flash/libspi_flash.a(cache_utils.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_flash_op_can_start' from `esp-idf/spi_flash/libspi_flash.a(cache_utils.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_flash_op_mutex' from `esp-idf/spi_flash/libspi_flash.a(cache_utils.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ldo_chan.0' from `esp-idf/spi_flash/libspi_flash.a(esp_flash_spi_init.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.esp_flash_default_chip' from `esp-idf/spi_flash/libspi_flash.a(esp_flash_spi_init.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.reason' from `esp-idf/esp_system/libesp_system.a(crosscore_int.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_no_block_func_arg' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_no_block_func_and_arg_are_ready' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_no_block_func' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_wait_for' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_func_arg' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_func' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ipc_ack' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ipc_mutex' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ipc_task_handle' from `esp-idf/esp_system/libesp_system.a(esp_ipc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.tick_cb' from `esp-idf/esp_system/libesp_system.a(freertos_hooks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.idle_cb' from `esp-idf/esp_system/libesp_system.a(freertos_hooks.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.int_wdt_cpu1_ticked' from `esp-idf/esp_system/libesp_system.a(int_wdt.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.iwdt_context' from `esp-idf/esp_system/libesp_system.a(int_wdt.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.p_twdt_obj' from `esp-idf/esp_system/libesp_system.a(task_wdt.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.g_twdt_isr' from `esp-idf/esp_system/libesp_system.a(task_wdt.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.init_context' from `esp-idf/esp_system/libesp_system.a(task_wdt_impl_timergroup.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_crypto_sha_aes_lock' from `esp-idf/esp_security/libesp_security.a(esp_crypto_lock.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ldo_chan' from `esp-idf/esp_hw_support/libesp_hw_support.a(clk_ctrl_os.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_mpll_ref_cnt' from `esp-idf/esp_hw_support/libesp_hw_support.a(clk_ctrl_os.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_cur_mpll_freq_hz' from `esp-idf/esp_hw_support/libesp_hw_support.a(clk_ctrl_os.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_apll_ref_cnt' from `esp-idf/esp_hw_support/libesp_hw_support.a(clk_ctrl_os.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_cur_apll_freq_hz' from `esp-idf/esp_hw_support/libesp_hw_support.a(clk_ctrl_os.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_rc_fast_freq_hz' from `esp-idf/esp_hw_support/libesp_hw_support.a(clk_ctrl_os.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_periph_ref_counts' from `esp-idf/esp_hw_support/libesp_hw_support.a(clk_ctrl_os.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_rtc_io_status' from `esp-idf/esp_hw_support/libesp_hw_support.a(io_mux.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_platform' from `esp-idf/esp_hw_support/libesp_hw_support.a(dw_gdma.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma2d_rx_channel_reserved_mask' from `esp-idf/esp_hw_support/libesp_hw_support.a(dma2d.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.dma2d_tx_channel_reserved_mask' from `esp-idf/esp_hw_support/libesp_hw_support.a(dma2d.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_platform' from `esp-idf/esp_hw_support/libesp_hw_support.a(dma2d.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.xStaticTimerQueue.0' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.ucStaticTimerQueueStorage.1' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xLastTime.2' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xTimerTaskHandle' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.xTimerQueue' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pxOverflowTimerList' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.pxCurrentTimerList' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.xActiveTimerList2' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.xActiveTimerList1' from `esp-idf/freertos/libfreertos.a(timers.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss._ZL13s_nvs_handles' from `esp-idf/nvs_flash/libnvs_flash.a(nvs_api.cpp.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._ZN14NVSHandleEntry17s_nvs_next_handleE' from `esp-idf/nvs_flash/libnvs_flash.a(nvs_api.cpp.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._ZN3nvs19NVSPartitionManager8instanceE' from `esp-idf/nvs_flash/libnvs_flash.a(nvs_partition_manager.cpp.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._ZN3nvs4Lock10mSemaphoreE' from `esp-idf/nvs_flash/libnvs_flash.a(nvs_platform.cpp.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_request_mutex' from `esp-idf/esp_driver_sdmmc/libesp_driver_sdmmc.a(sdmmc_transaction.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_platform' from `esp-idf/esp_driver_i2c/libesp_driver_i2c.a(i2c_master.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_i2c_platform' from `esp-idf/esp_driver_i2c/libesp_driver_i2c.a(i2c_common.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ledc_slow_clk_rc_fast_freq' from `esp-idf/esp_driver_ledc/libesp_driver_ledc.a(ledc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_ledc_mutex' from `esp-idf/esp_driver_ledc/libesp_driver_ledc.a(ledc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_ledc_fade_rec' from `esp-idf/esp_driver_ledc/libesp_driver_ledc.a(ledc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.p_ledc_obj' from `esp-idf/esp_driver_ledc/libesp_driver_ledc.a(ledc.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.tx_channel' from `esp-idf/mbedtls/mbedtls/library/libmbedcrypto.a(esp_crypto_shared_gdma.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.rx_channel' from `esp-idf/mbedtls/mbedtls/library/libmbedcrypto.a(esp_crypto_shared_gdma.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.s_adc_digi_ctrlr_cnt' from `esp-idf/esp_hw_support/libesp_hw_support.a(adc_share_hw_ctrl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.adc2_lock' from `esp-idf/esp_hw_support/libesp_hw_support.a(adc_share_hw_ctrl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.adc1_lock' from `esp-idf/esp_hw_support/libesp_hw_support.a(adc_share_hw_ctrl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_adc_cali_chan_compens' from `esp-idf/esp_hw_support/libesp_hw_support.a(adc_share_hw_ctrl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.s_adc_cali_param' from `esp-idf/esp_hw_support/libesp_hw_support.a(adc_share_hw_ctrl.c.obj)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._ZN12_GLOBAL__N_113__new_handlerE' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libstdc++.a(new_handler.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._ZL4init' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libstdc++.a(eh_globals.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._ZN17__eh_globals_init7_S_initE' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libstdc++.a(eh_globals.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._ZN12_GLOBAL__N_110eh_globalsE' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libstdc++.a(eh_globals.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.initial_env' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-environ.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.__sf' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-findfp.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.__stdio_exit_handler' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-findfp.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss.prev_tzenv' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-tzset_r.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.__tzname_dst' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-tzset_r.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.bss.__tzname_std' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-tzset_r.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._timezone' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-tzvars.o)'
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: --enable-non-contiguous-regions discards section `.sbss._daylight' from `C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/lib/rv32imafc_zicsr_zifencei/ilp32f/no-rtti\libc.a(libc_a-tzvars.o)'
+
+
+C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/14.2.0/../../../../riscv32-esp-elf/bin/ld.exe: error: Total discarded sections size is 168961 bytes
+
+
+collect2.exe: error: ld returned 1 exit status
+
+ninja: build stopped: subcommand failed.
+
+python.exe : [0;33mHINT: The binary size has exceeded the limit. To resolve the issue consider reducing the binary siz
+e.
+At C:\Users\gywan\AppData\Local\Temp\esp_idf_activate_gywan\activate_nb7ta5yj.ps1:11 char:19
++ function idf.py { &python "$Env:IDF_PATH\tools\idf.py" $args }
++                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0;33mHINT: Th...he binary size.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+You can explore size optimization techniques in the documentation by running 'idf.py docs -sp api-guides/performance/si
+ze.html#reducing-overall-size'.
+Note that the linker performed the dead code elimination.[0m
+ninja failed with exit code 1, output of the command is in the C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vg
+banext\apps\vgba_tab5\build\log\idf_py_stderr_output_260 and C:\Users\gywan\Documents\trae-project\tab5-retro\tab5-vgba
+next\apps\vgba_tab5\build\log\idf_py_stdout_output_260
