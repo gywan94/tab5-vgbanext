@@ -1,0 +1,70 @@
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d" font-family="system-ui, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+<title id="t">ARM7TDMI 指令在 ESP32-P4 上的模拟 CPU 开销排名</title>
+<desc id="d">按解释执行时每条指令消耗的 ESP32 CPU 相对量级排序，从最耗的 DMA 触发写、块传输 LDM/STM、IO 寄存器写、单次访存，到最便宜的 ALU/移位/逻辑。核心原因是模拟内存在 PSRAM，访存有双重惩罚。</desc>
+<style>
+  .ttl  { fill: #1a1a18; font-weight: 700; }
+  .nm   { fill: #1a1a18; font-weight: 700; }
+  .dv   { fill: #6b6b66; }
+  .track{ fill: #f0f0ed; }
+  .xl   { fill: #1a1a18; font-weight: 700; }
+  .note { fill: #f5f3ee; stroke: #e0ddd4; }
+  .nt   { fill: #5b5b55; }
+</style>
+<rect x="0" y="0" width="1000" height="660" fill="#ffffff"/>
+<text x="28" y="34" class="ttl" font-size="17">ARM7TDMI 指令 · 模拟时的 ESP32 CPU 开销</text>
+<text x="28" y="54" class="dv" font-size="12">每条指令解释执行的相对量级（估算，以最便宜的 ALU = 1× 为基准）· 越往上越耗</text>
+<line x1="318" y1="78" x2="318" y2="556" stroke="#dcdcd6" stroke-width="1"/>
+
+<text x="28" y="98" class="nm" font-size="13.5">触发 DMA 的 IO 写</text>
+<text x="28" y="116" class="dv" font-size="10.5">STR→DMAxCNT：一条搬几 KB</text>
+<rect class="track" x="318" y="84" width="592" height="22" rx="4"/>
+<rect x="318" y="84" width="592" height="22" rx="4" fill="#c0392b"/>
+<text x="918" y="100" class="xl" font-size="12" fill="#c0392b">≫ 爆发</text>
+
+<text x="28" y="156" class="nm" font-size="13.5">LDM·STM·PUSH·POP</text>
+<text x="28" y="174" class="dv" font-size="10.5">一条做 N 次访存（最多 16）</text>
+<rect class="track" x="318" y="142" width="592" height="22" rx="4"/>
+<rect x="318" y="142" width="582" height="22" rx="4" fill="#d64545"/>
+<text x="908" y="158" class="xl" font-size="12">~20×</text>
+
+<text x="28" y="214" class="nm" font-size="13.5">IO 寄存器写</text>
+<text x="28" y="232" class="dv" font-size="10.5">CPUUpdateRegister 大 switch + 副作用</text>
+<rect class="track" x="318" y="200" width="592" height="22" rx="4"/>
+<rect x="318" y="200" width="360" height="22" rx="4" fill="#e0762e"/>
+<text x="686" y="216" class="xl" font-size="12">~12×</text>
+
+<text x="28" y="272" class="nm" font-size="13.5">LDR·STR·LDRH·LDRB</text>
+<text x="28" y="290" class="dv" font-size="10.5">区域 dispatch + PSRAM 延迟 + 等待周期</text>
+<rect class="track" x="318" y="258" width="592" height="22" rx="4"/>
+<rect x="318" y="258" width="180" height="22" rx="4" fill="#e0a32e"/>
+<text x="506" y="274" class="xl" font-size="12">~6×</text>
+
+<text x="28" y="330" class="nm" font-size="13.5">B·Bcc·BL·BX 分支</text>
+<text x="28" y="348" class="dv" font-size="10.5">流水线重填 = 2 次取指</text>
+<rect class="track" x="318" y="316" width="592" height="22" rx="4"/>
+<rect x="318" y="316" width="105" height="22" rx="4" fill="#caa13a"/>
+<text x="431" y="332" class="xl" font-size="12">~3.5×</text>
+
+<text x="28" y="388" class="nm" font-size="13.5">ARM 数据处理（桶形移位）</text>
+<text x="28" y="406" class="dv" font-size="10.5">每条算第二操作数移位 + 条件码</text>
+<rect class="track" x="318" y="374" width="592" height="22" rx="4"/>
+<rect x="318" y="374" width="60" height="22" rx="4" fill="#8aa83f"/>
+<text x="386" y="390" class="xl" font-size="12">~2×</text>
+
+<text x="28" y="446" class="nm" font-size="13.5">MUL · MLA · (U/S)MULL</text>
+<text x="28" y="464" class="dv" font-size="10.5">主机一条 mul；GBA 多周期只是记账</text>
+<rect class="track" x="318" y="432" width="592" height="22" rx="4"/>
+<rect x="318" y="432" width="45" height="22" rx="4" fill="#5aa356"/>
+<text x="371" y="448" class="xl" font-size="12">~1.5×</text>
+
+<text x="28" y="504" class="nm" font-size="13.5">MOV·ADD·移位·逻辑</text>
+<text x="28" y="522" class="dv" font-size="10.5">几条主机指令 + 标志计算</text>
+<rect class="track" x="318" y="490" width="592" height="22" rx="4"/>
+<rect x="318" y="490" width="30" height="22" rx="4" fill="#1f9d6b"/>
+<text x="356" y="506" class="xl" font-size="12">1×</text>
+
+<rect class="note" x="28" y="572" width="944" height="64" rx="10"/>
+<text x="46" y="596" class="ttl" font-size="12.5">⚡ ESP32 关键瓶颈</text>
+<text x="46" y="617" class="nt" font-size="11.5">模拟的 GBA 内存（EWRAM/VRAM/ROM）全在 PSRAM，比内部 SRAM 慢约 10×。所以每次访存都吃双份开销：① 内存区域 dispatch（大 switch）+ ② PSRAM 延迟。</text>
+<text x="46" y="632" class="nt" font-size="11.5">→ 指令越多访存，越耗 CPU。重场景掉到 30fps 的根源，就是精灵/AI/特效那一帧里暴涨的 load/store 与 IO 写。</text>
+</svg>

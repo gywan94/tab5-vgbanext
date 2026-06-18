@@ -67,3 +67,19 @@ as a performance lever once the baseline is validated on hardware.
 - Single-core serial loop for now; the emulate/display split used by `tab5-gba`
   can be layered on later (the core hands back a complete frame).
 - No real GBA BIOS needed — VBA-Next uses an HLE BIOS.
+
+## ARM7TDMI 指令模拟分析 / Instruction emulation analysis
+
+把 GBA 的 ARM7TDMI/THUMB 指令按两条轴分类 —— 一条是**运行时 ESP32 CPU 开销**（哪类指令模拟最耗 CPU），一条是 **JIT 翻译复杂度**（哪类指令最难写翻译器）。两条轴在「访存类」上闭环：最难翻译的恰好也是最耗 CPU、JIT 收益最小的那类。
+
+### 运行时 CPU 开销（每条指令，相对量级）
+
+![ARM7TDMI ESP32 CPU cost](docs/arm7tdmi-esp32-cpu-cost.svg)
+
+ESP32 专属瓶颈：模拟内存（EWRAM/VRAM/ROM）全在 PSRAM，比内部 SRAM 慢约 10×，所以每次访存都吃双份开销 —— ① 内存区域 dispatch（`CPUReadMemory`/`CPUWriteMemory` 的大 switch）+ ② PSRAM 延迟。`LDM/STM/PUSH/POP` 一条做 N 次访存（最多 16），单条最耗；`LDR/STR` 单条 ~6× 但**最频繁**，是一帧总开销的大头；DMA 触发写一条搬几 KB，单条爆发性最高但少。乘法/移位在主机上几乎免费（GBA 的多周期只是 cycle 记账，不产生主机工作量）。`×` 为估算量级，非逐 opcode 实测。
+
+### JIT 翻译复杂度
+
+![ARM7TDMI JIT complexity](docs/arm7tdmi-jit-complexity.svg)
+
+复杂度由四个驱动因子决定：**标志计算**（NZCV 逐位一致）、**内存副作用**（块内访存的状态同步）、**PC/模式/流水线**（只能在块边界处理）、**主机 ISA 契合度**（如桶形移位 RISC-V 没有）。本仓库的 THUMB→RISC-V dynarec（`components/vgba_jit/`，研究态、默认关闭）主要吃 ① 平凡数据运算那层；访存（状态同步）和 ARM 模式（每条条件执行 + 桶形移位操作数）是收益最小、最难的部分。

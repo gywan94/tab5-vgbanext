@@ -11,6 +11,9 @@ dependencies.lock
 *.bin.bak
 *.log
 
+# Merged single-file firmware — distributed as a GitHub Release asset, not committed
+*-merged.bin
+
 # Editor / OS
 .vscode/
 .idea/
