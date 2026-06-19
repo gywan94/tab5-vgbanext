@@ -192,10 +192,21 @@ static inline uint16_t jit_fetch(uint32_t pc)
     return *(uint16_t *)(s_rom + ((pc & s_rom_mask) & ~1u));                   /* ROM 0x08+   */
 }
 
+/* 32-bit ARM opcode fetch (same regions, 4-aligned). */
+static inline uint32_t jit_fetch32(uint32_t pc)
+{
+    uint32_t r = pc >> 24;
+    if (r == 0x03) return *(uint32_t *)(s_iwram + ((pc & 0x7FFFu)  & ~3u));
+    if (r == 0x02) return *(uint32_t *)(s_ewram + ((pc & 0x3FFFFu) & ~3u));
+    return *(uint32_t *)(s_rom + ((pc & s_rom_mask) & ~3u));
+}
+
 /* ── Dispatch state (the dispatch function is defined after the emitters). ── */
 int g_vgba_jit = 0;
 static int s_arena_full = 0;         /* set once the live arena fills → stop build attempts */
 unsigned g_vgba_blocks = 0;          /* total JIT blocks built (stats) */
+unsigned g_vgba_arm_instrs = 0;      /* M-A1: ARM instrs run via JIT (coverage stat) */
+unsigned g_arm_region[16] = {0};     /* M-A2 diag: ARM instrs executed per address region (>>24 & 0xF) */
 unsigned g_vgba_jit_instrs = 0;      /* total THUMB instrs run via JIT (stats) */
 
 /* ── Minimal RV32 encoder (adapted from the mGBA dynarec) ── */
@@ -220,6 +231,8 @@ static inline uint32_t rv_or   (int rd, int rs1, int rs2) { return (rs2 << 20) |
 static inline uint32_t rv_andi (int rd, int rs1, int imm) { return ((imm & 0xFFF) << 20) | (rs1 << 15) | (7 << 12) | (rd << 7) | 0x13; }
 static inline uint32_t rv_lbu  (int rd, int rs1, int imm) { return ((imm & 0xFFF) << 20) | (rs1 << 15) | (4 << 12) | (rd << 7) | 0x03; }
 static inline uint32_t rv_mul  (int rd, int rs1, int rs2) { return (0x01u << 25) | (rs2 << 20) | (rs1 << 15) | (0 << 12) | (rd << 7) | 0x33; } /* RV32M */
+static inline uint32_t rv_beq  (int rs1, int rs2, int imm) { uint32_t i = (uint32_t)imm;     /* B-type, byte offset (even) */
+    return (((i>>12)&1)<<31) | (((i>>5)&0x3F)<<25) | (rs2<<20) | (rs1<<15) | (0<<12) | (((i>>1)&0xF)<<8) | (((i>>11)&1)<<7) | 0x63; }
 enum { RV_T3 = 28, RV_T4 = 29, RV_T5 = 30, RV_A0 = 10, RV_A1 = 11 };
 
 /* Load a 32-bit constant (lui+addi, lo12 sign-extension corrected). */
@@ -573,10 +586,22 @@ static int emit_ldst(uint32_t *c, int n, int is_store, int size, int is_signed,
  * the bit-ops yield a clean 0/1. */
 static int emit_cond(uint32_t *c, int n, int cond, uint8_t *nf, uint8_t *zf, uint8_t *cf, uint8_t *vf)
 {
-    n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)nf); c[n++] = rv_lbu(RV_T2, RV_T1, 0); /* N */
-    n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)zf); c[n++] = rv_lbu(RV_T3, RV_T1, 0); /* Z */
-    n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)cf); c[n++] = rv_lbu(RV_T4, RV_T1, 0); /* C */
-    n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)vf); c[n++] = rv_lbu(RV_T5, RV_T1, 0); /* V */
+    /* load ONLY the flags this condition needs (most ARM conds use a single flag,
+     * so this cuts the predicate-guard cost from 4 loads to 1 for EQ/NE/CS/CC/MI/PL/VS/VC). */
+    int needN=0, needZ=0, needC=0, needV=0;
+    switch (cond) {
+        case 0x0: case 0x1: needZ = 1; break;
+        case 0x2: case 0x3: needC = 1; break;
+        case 0x4: case 0x5: needN = 1; break;
+        case 0x6: case 0x7: needV = 1; break;
+        case 0x8: case 0x9: needC = needZ = 1; break;
+        case 0xA: case 0xB: needN = needV = 1; break;
+        case 0xC: case 0xD: needN = needZ = needV = 1; break;
+    }
+    if (needN) { n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)nf); c[n++] = rv_lbu(RV_T2, RV_T1, 0); } /* N */
+    if (needZ) { n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)zf); c[n++] = rv_lbu(RV_T3, RV_T1, 0); } /* Z */
+    if (needC) { n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)cf); c[n++] = rv_lbu(RV_T4, RV_T1, 0); } /* C */
+    if (needV) { n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)vf); c[n++] = rv_lbu(RV_T5, RV_T1, 0); } /* V */
     switch (cond) {
         case 0x0: c[n++] = rv_addi(RV_T0, RV_T3, 0); break;                                       /* EQ  Z */
         case 0x1: c[n++] = rv_xori(RV_T0, RV_T3, 1); break;                                       /* NE !Z */
@@ -776,6 +801,327 @@ int vgba_jit_thumb_dispatch(uint32_t pc)
         g_vgba_jit_instrs += e->ninstr;
         return e->ninstr;
     }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+ *  M-A1 — ARM-mode translator (data-processing, immediate operand2)
+ *  Mirrors the THUMB path: leaf blocks of consecutive AL, no-PC, translatable
+ *  ARM ops applying data effects only; gba.c advances PC/prefetch/cycles. ARM &
+ *  THUMB emulate the SAME ARM7TDMI, so the flag math (emit_addsub_flags) is reused
+ *  verbatim. opcode index: aluop[24:21], S[20], Rn[19:16], Rd[15:12], imm @[11:0].
+ * ════════════════════════════════════════════════════════════════════════════ */
+
+/* ARM data-processing CORE: operand2 already in t2, a=reg[Rn] loaded here into t0,
+ * result→t3. opc = ARM ALU op (0..15). store_lc: for logical+S, 0/1 = store that
+ * constant C; -1 = leave C (LSL#0 / arithmetic / carry already stored by the reg
+ * shifter). Flag math (emit_addsub_flags) is shared verbatim with THUMB. No ret. */
+static int emit_arm_dp_core(uint32_t *c, int n, int opc, int rd, int rn, int S, int store_lc,
+                            uint32_t *reg, uint8_t *nf, uint8_t *cf, uint8_t *zf, uint8_t *vf)
+{
+    int is_logical = (opc==0||opc==1||opc==8||opc==9||opc==12||opc==13||opc==14||opc==15);
+    int writes     = !(opc>=8 && opc<=11);     /* TST/TEQ/CMP/CMN: flags only, no write */
+    int uses_rn    = !(opc==13 || opc==15);    /* MOV/MVN ignore Rn */
+
+    if (uses_rn) {
+        n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)(reg + rn));
+        c[n++] = rv_lw(RV_T0, RV_T1, 0);                       /* t0 = a = reg[Rn] */
+    }
+    switch (opc) {                                             /* result → t3, b=t2 */
+        case 0: case 8:  c[n++] = rv_and(RV_T3, RV_T0, RV_T2); break;                   /* AND / TST */
+        case 1: case 9:  c[n++] = rv_xor(RV_T3, RV_T0, RV_T2); break;                   /* EOR / TEQ */
+        case 12:         c[n++] = rv_or (RV_T3, RV_T0, RV_T2); break;                   /* ORR */
+        case 13:         c[n++] = rv_addi(RV_T3, RV_T2, 0);    break;                   /* MOV  = op2 */
+        case 14:         c[n++] = rv_xori(RV_T5, RV_T2, -1); c[n++] = rv_and(RV_T3, RV_T0, RV_T5); break; /* BIC a&~op2 */
+        case 15:         c[n++] = rv_xori(RV_T3, RV_T2, -1); break;                     /* MVN  = ~op2 */
+        case 4: case 11: c[n++] = rv_add(RV_T3, RV_T0, RV_T2); break;                   /* ADD / CMN */
+        case 2: case 10: c[n++] = rv_sub(RV_T3, RV_T0, RV_T2); break;                   /* SUB / CMP */
+        case 3:          c[n++] = rv_sub(RV_T3, RV_T2, RV_T0); break;                   /* RSB = op2 - a */
+        case 5:          n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)cf);             /* ADC = a + op2 + C */
+                         c[n++] = rv_lbu(RV_A0, RV_T1, 0);
+                         c[n++] = rv_add(RV_T3, RV_T0, RV_T2);
+                         c[n++] = rv_add(RV_T3, RV_T3, RV_A0); break;
+        case 6:          n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)cf);             /* SBC = a - op2 - 1 + C */
+                         c[n++] = rv_lbu(RV_A0, RV_T1, 0);
+                         c[n++] = rv_sub(RV_T3, RV_T0, RV_T2);
+                         c[n++] = rv_addi(RV_T3, RV_T3, -1);
+                         c[n++] = rv_add(RV_T3, RV_T3, RV_A0); break;
+        case 7:          n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)cf);             /* RSC = op2 - a - 1 + C */
+                         c[n++] = rv_lbu(RV_A0, RV_T1, 0);
+                         c[n++] = rv_sub(RV_T3, RV_T2, RV_T0);
+                         c[n++] = rv_addi(RV_T3, RV_T3, -1);
+                         c[n++] = rv_add(RV_T3, RV_T3, RV_A0); break;
+    }
+
+    if (writes) {
+        n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)(reg + rd));
+        c[n++] = rv_sw(RV_T3, RV_T1, 0);                       /* reg[Rd] = res */
+    }
+
+    if (S) {
+        if (is_logical) {
+            if (store_lc >= 0) { c[n++] = rv_addi(RV_T4, RV_ZERO, store_lc & 1); n = emit_store_flag(c, n, cf, RV_T4); }
+            /* V unchanged for logical ops */
+        } else {
+            int is_sub = (opc==2||opc==3||opc==6||opc==7||opc==10);   /* SUB/RSB/SBC/RSC/CMP */
+            int ra = (opc==3||opc==7) ? RV_T2 : RV_T0;               /* RSB/RSC swap lhs/rhs */
+            int rb = (opc==3||opc==7) ? RV_T0 : RV_T2;
+            n = emit_addsub_flags(c, n, is_sub, ra, rb, RV_T3, cf, vf);
+        }
+        c[n++] = rv_srli(RV_T4, RV_T3, 31);  n = emit_store_flag(c, n, nf, RV_T4);   /* N */
+        c[n++] = rv_sltiu(RV_T4, RV_T3, 1);  n = emit_store_flag(c, n, zf, RV_T4);   /* Z */
+    }
+    return n;
+}
+
+/* ARM DP, IMMEDIATE operand2 (M-A1). imm = pre-rotated constant; shc = logical
+ * shifter carry (0/1, -1 = unchanged when rotate==0). Leaf block (ends in ret). */
+static int emit_arm_dp_imm(uint32_t *c, int opc, int rd, int rn, uint32_t imm, int shc,
+                           int S, uint32_t *reg, uint8_t *nf, uint8_t *cf, uint8_t *zf, uint8_t *vf)
+{
+    int n = emit_li(c, 0, RV_T2, imm);                         /* t2 = op2 = imm */
+    n = emit_arm_dp_core(c, n, opc, rd, rn, S, shc, reg, nf, cf, zf, vf);
+    c[n++] = rv_jalr(RV_ZERO, RV_RA, 0);
+    return n;
+}
+
+/* ARM DP, REGISTER operand2 with IMMEDIATE shift (M-A2). op2 = shift(Rm,sht,sha).
+ * sht: 0 LSL,1 LSR,2 ASR,3 ROR. sha 0..31 (with the ARM #0 special cases). For
+ * logical+S the shifter carry-out is computed from Rm and stored to C during the
+ * shift (arithmetic ops ignore it → C/V come from emit_addsub_flags). Leaf block. */
+static int emit_arm_dp_reg(uint32_t *c, int opc, int rd, int rn, int rm, int sht, int sha,
+                           int S, uint32_t *reg, uint8_t *nf, uint8_t *cf, uint8_t *zf, uint8_t *vf)
+{
+    int n = 0;
+    int is_logical = (opc==0||opc==1||opc==8||opc==9||opc==12||opc==13||opc==14||opc==15);
+    int want_c = (S && is_logical);            /* compute+store shifter carry? */
+    int set_c  = want_c;                       /* cleared for LSL#0 (C unchanged) */
+
+    n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)(reg + rm));
+    c[n++] = rv_lw(RV_T0, RV_T1, 0);           /* t0 = Rm */
+
+    if (sht == 0) {                            /* LSL */
+        if (sha == 0) { c[n++] = rv_addi(RV_T2, RV_T0, 0); set_c = 0; }      /* op2=Rm, C kept */
+        else { if (want_c) { c[n++] = rv_srli(RV_T4, RV_T0, 32 - sha); c[n++] = rv_andi(RV_T4, RV_T4, 1); }
+               c[n++] = rv_slli(RV_T2, RV_T0, sha); }
+    } else if (sht == 1) {                     /* LSR (sha==0 → #32) */
+        if (sha == 0) { if (want_c) c[n++] = rv_srli(RV_T4, RV_T0, 31); c[n++] = rv_addi(RV_T2, RV_ZERO, 0); }
+        else { if (want_c) { c[n++] = rv_srli(RV_T4, RV_T0, sha - 1); c[n++] = rv_andi(RV_T4, RV_T4, 1); }
+               c[n++] = rv_srli(RV_T2, RV_T0, sha); }
+    } else if (sht == 2) {                     /* ASR (sha==0 → #32) */
+        if (sha == 0) { if (want_c) c[n++] = rv_srli(RV_T4, RV_T0, 31); c[n++] = rv_srai(RV_T2, RV_T0, 31); }
+        else { if (want_c) { c[n++] = rv_srai(RV_T4, RV_T0, sha - 1); c[n++] = rv_andi(RV_T4, RV_T4, 1); }
+               c[n++] = rv_srai(RV_T2, RV_T0, sha); }
+    } else {                                   /* ROR (sha==0 → RRX) */
+        if (sha == 0) {                        /* RRX: op2 = (C<<31)|(Rm>>1), carry = Rm&1 */
+            if (want_c) c[n++] = rv_andi(RV_T4, RV_T0, 1);
+            n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)cf);
+            c[n++] = rv_lbu(RV_T5, RV_T1, 0);
+            c[n++] = rv_slli(RV_T5, RV_T5, 31);
+            c[n++] = rv_srli(RV_T2, RV_T0, 1);
+            c[n++] = rv_or(RV_T2, RV_T2, RV_T5);
+        } else {                               /* ROR #sha: (Rm>>sha)|(Rm<<(32-sha)), carry = Rm bit(sha-1) */
+            if (want_c) { c[n++] = rv_srli(RV_T4, RV_T0, sha - 1); c[n++] = rv_andi(RV_T4, RV_T4, 1); }
+            c[n++] = rv_srli(RV_T5, RV_T0, sha);
+            c[n++] = rv_slli(RV_T2, RV_T0, 32 - sha);
+            c[n++] = rv_or(RV_T2, RV_T2, RV_T5);
+        }
+    }
+    if (set_c) n = emit_store_flag(c, n, cf, RV_T4);   /* store shifter carry to C now */
+
+    /* operand2 in t2, C handled → core leaves logical C alone (store_lc = -1) */
+    n = emit_arm_dp_core(c, n, opc, rd, rn, S, -1, reg, nf, cf, zf, vf);
+    c[n++] = rv_jalr(RV_ZERO, RV_RA, 0);
+    return n;
+}
+
+/* Decode + emit ONE ARM instruction (cond-independent) into body[] as a standalone
+ * leaf block (ends in ret). Returns words incl ret, or -1 if not translatable.
+ * Handles: data-processing imm/reg-imm-shift (M-A1/A2) + single data transfer
+ * LDR/STR imm-offset (M-A4). Register-shift, PC operands, writeback → terminate. */
+static int arm_build_dp(uint32_t *body, uint32_t opc)
+{
+    uint32_t cls = opc & 0x0C000000u;
+
+    if (cls == 0x04000000u) {                          /* bits 27:26 == 01 → single data transfer */
+        int I = (opc >> 25) & 1, P = (opc >> 24) & 1, U = (opc >> 23) & 1;
+        int B = (opc >> 22) & 1, W = (opc >> 21) & 1, L = (opc >> 20) & 1;
+        int rn = (opc >> 16) & 0xF, rd = (opc >> 12) & 0xF;
+        if (I) return -1;                              /* M-A4: immediate offset only */
+        if (!P || W) return -1;                        /* pre-indexed, no writeback only */
+        if (rn == 15 || rd == 15) return -1;           /* no PC base/dest */
+        int imm = opc & 0xFFF;
+        int off = U ? imm : -imm;
+        if (off < -2047 || off > 2047) return -1;      /* addi offset range */
+        int w = emit_ldst(body, 0, !L, B ? 0 : 2, 0, rd, rn, off, -1);  /* size: byte/word */
+        if (w < 0) return -1;                          /* helper not registered */
+        body[w++] = rv_jalr(RV_ZERO, RV_RA, 0);        /* standalone leaf ret */
+        return w;
+    }
+    if (cls != 0x00000000u) return -1;                 /* bits 27:26 == 00 → data-processing class */
+    int I = (opc >> 25) & 1;
+    int aluop = (opc >> 21) & 0xF, S = (opc >> 20) & 1;
+    int rn = (opc >> 16) & 0xF, rd = (opc >> 12) & 0xF;
+    if (!S && aluop >= 8 && aluop <= 11) return -1;     /* op∈{TST..CMN} & S=0 → MSR/MRS, not DP */
+    int writes  = !(aluop >= 8 && aluop <= 11);
+    int uses_rn = !(aluop == 13 || aluop == 15);
+    if (writes && rd == 15) return -1;                 /* PC dest → terminate */
+    if (uses_rn && rn == 15) return -1;                /* PC src  → terminate */
+
+    if (I) {                                           /* immediate operand2 */
+        int rot = (opc >> 8) & 0xF; uint32_t imm8 = opc & 0xFF;
+        uint32_t imm = rot ? ((imm8 >> (rot * 2)) | (imm8 << (32 - rot * 2))) : imm8;
+        int shc = rot ? (int)(imm >> 31) : -1;
+        return emit_arm_dp_imm(body, aluop, rd, rn, imm, shc, S, s_reg, s_nf, s_cf, s_zf, s_vf);
+    }
+    if (opc & 0x10) return -1;                          /* bit4=1 → register-shift amount (later) */
+    int rm = opc & 0xF, sht = (opc >> 5) & 3, sha = (opc >> 7) & 0x1F;
+    if (rm == 15) return -1;                            /* PC operand → terminate */
+    return emit_arm_dp_reg(body, aluop, rd, rn, rm, sht, sha, S, s_reg, s_nf, s_cf, s_zf, s_vf);
+}
+
+/* Translate ONE ARM instruction at `pc` into dst+n. Returns new word count, or -1.
+ * AL ops copy straight; conditional ops (M-A3) are wrapped in a predicate: emit_cond
+ * → taken in t0, and a beq skips the whole body when the condition fails (no reg/flag
+ * effects), exactly matching ARM's per-instruction conditional execution. */
+static int jit_emit_one_arm(uint32_t *dst, int n, uint32_t opc, uint32_t pc)
+{
+    (void)pc;
+    int cond = opc >> 28;
+    if (cond == 0x0F) return -1;                        /* NV / unconditional-extension space */
+
+    uint32_t body[160];
+    int bw = arm_build_dp(body, opc);
+    if (bw < 0) return -1;
+    bw--;                                               /* drop trailing ret (chained) */
+
+    if (cond == 0x0E) {                                 /* AL: copy body directly */
+        memcpy(dst + n, body, (size_t)bw * 4);
+        return n + bw;
+    }
+    n = emit_cond(dst, n, cond, s_nf, s_zf, s_cf, s_vf);/* taken (0/1) → t0 */
+    dst[n++] = rv_beq(RV_T0, RV_ZERO, (bw + 1) * 4);    /* !taken → skip body */
+    memcpy(dst + n, body, (size_t)bw * 4);
+    return n + bw;
+}
+
+/* Build (on miss) / run a native leaf block of consecutive translatable ARM ops at
+ * `pc`. Like vgba_jit_thumb_dispatch but 32-bit. Returns #instrs run, 0 = fall back.
+ * Shares s_cache/s_arena with the THUMB path (pc tags disambiguate; ARM & THUMB
+ * regions don't overlap in practice). */
+int vgba_jit_arm_dispatch(uint32_t pc)
+{
+    if (!s_cache || !s_arena || !s_rom) return 0;
+    jit_entry_t *e = &s_cache[jit_slot(pc)];
+    if (e->pc == pc) {
+        if (!e->code) return 0;                        /* negative cache */
+        ((void (*)(void))e->code)();
+        g_vgba_jit_instrs += e->ninstr;
+        g_vgba_arm_instrs += e->ninstr;
+        return e->ninstr;
+    }
+    if (s_arena_full) return 0;
+
+    uint32_t buf[JIT_BLK_MAX_WORDS];
+    int n = 0, ninstr = 0;
+    uint32_t p = pc;
+    buf[n++] = rv_addi(2, 2, -16);                     /* prologue (leaf, but kept for parity) */
+    buf[n++] = rv_sw(RV_RA, 2, 0);
+    while (ninstr < JIT_BLK_MAX_INSTR && n + 200 <= JIT_BLK_MAX_WORDS) {
+        uint32_t opc = jit_fetch32(p);
+        int nn = jit_emit_one_arm(buf, n, opc, p);
+        if (nn < 0) break;
+        n = nn; ninstr++; p += 4;
+    }
+    if (ninstr == 0) { e->pc = pc; e->code = NULL; e->ninstr = 0; return 0; }
+    buf[n++] = rv_lw(RV_RA, 2, 0);                     /* epilogue */
+    buf[n++] = rv_addi(2, 2, 16);
+    buf[n++] = 0x00008067u;                            /* ret */
+    void *blk = vgba_jit_alloc(n * 4);
+    if (!blk) { s_arena_full = 1; return 0; }
+    memcpy(blk, buf, (size_t)n * 4);
+    vgba_jit_sync_icache(blk, (size_t)n * 4);
+    e->pc = pc; e->code = blk; e->ninstr = (uint16_t)ninstr;
+    g_vgba_blocks++;
+    ((void (*)(void))e->code)();
+    g_vgba_jit_instrs += e->ninstr;
+    g_vgba_arm_instrs += e->ninstr;
+    return e->ninstr;
+}
+
+/* M-A5: emit an ARM branch terminator that sets RV_A0 = next ARM PC, then returns
+ * the new word count, or -1 if `opc` is not a translatable branch. B (cond AL) =
+ * constant target; Bcc (cond 0x0-0xD) = branchless select target vs fall-through
+ * (pc+4). BL (L=1, writes LR) and BX stay with the interpreter. ARM target =
+ * pc + 8 + (signext24(imm24) << 2). */
+static int emit_arm_branch(uint32_t *c, int n, uint32_t opc, uint32_t pc)
+{
+    if ((opc & 0x0E000000u) != 0x0A000000u) return -1;   /* not B/BL */
+    int cond = opc >> 28;
+    if (cond == 0x0F) return -1;
+    int is_bl = (opc & 0x01000000u) != 0;
+    int32_t off = ((int32_t)(opc << 8)) >> 6;            /* signext 24b, <<2 */
+    uint32_t target = pc + 8 + (uint32_t)off;
+    uint32_t fallth = pc + 4;
+    if (is_bl) {                                         /* BL: LR = pc+4, then branch to target */
+        if (cond != 0x0E) return -1;                     /* BLcc rare → interpreter */
+        n = emit_li(c, n, RV_T0, pc + 4);
+        n = emit_li(c, n, RV_T1, (uint32_t)(uintptr_t)(s_reg + 14));
+        c[n++] = rv_sw(RV_T0, RV_T1, 0);                 /* reg[14] = return addr */
+        n = emit_li(c, n, RV_A0, target);
+        return n;
+    }
+    if (cond == 0x0E) {                                  /* unconditional B */
+        n = emit_li(c, n, RV_A0, target);
+        return n;
+    }
+    n = emit_cond(c, n, cond, s_nf, s_zf, s_cf, s_vf);   /* taken (0/1) → t0 */
+    n = emit_li(c, n, RV_A0, fallth);
+    c[n++] = rv_sub(RV_T1, RV_ZERO, RV_T0);              /* t1 = -taken (0 / 0xFFFFFFFF) */
+    n = emit_li(c, n, RV_A1, target - fallth);
+    c[n++] = rv_and(RV_T1, RV_T1, RV_A1);                /* t1 = taken ? diff : 0 */
+    c[n++] = rv_add(RV_A0, RV_A0, RV_T1);                /* a0 = fallth + (taken?diff:0) */
+    return n;
+}
+
+/* M-A5: build (on miss) and return a CHAINING ARM block at `pc`: straight-line
+ * translatable ops (DP/load-store, AL or conditional) then a B/Bcc TERMINATOR that
+ * returns the next ARM PC in a0. Non-branch end (non-translatable op / full) →
+ * a0 = fall-through PC. *out_ninstr = #ARM instrs (incl. branch) for cycle math.
+ * Returns block code (uint32_t fn(void) → next PC), NULL if entry untranslatable or
+ * arena full. The gba.c hook CHAINS block→a0→block, staying in JIT across branches. */
+void *vgba_jit_arm_get_block(uint32_t pc, int *out_ninstr)
+{
+    if (!s_cache || !s_arena || !s_rom) { *out_ninstr = 0; return NULL; }
+    jit_entry_t *e = &s_cache[jit_slot(pc)];
+    if (e->pc == pc) { *out_ninstr = e->ninstr; return e->code; }
+    if (s_arena_full) { *out_ninstr = 0; return NULL; }
+
+    static uint32_t buf[JIT_BLK_MAX_WORDS];
+    int n = 0, ninstr = 0, terminated = 0;
+    uint32_t p = pc;
+    buf[n++] = rv_addi(2, 2, -16);                       /* prologue: save ra (load/store call) */
+    buf[n++] = rv_sw(RV_RA, 2, 0);
+    while (ninstr < JIT_BLK_MAX_INSTR && n + 200 <= JIT_BLK_MAX_WORDS) {
+        uint32_t opc = jit_fetch32(p);
+        int bn = emit_arm_branch(buf, n, opc, p);        /* branch terminator? */
+        if (bn >= 0) { n = bn; ninstr++; terminated = 1; break; }
+        int nn = jit_emit_one_arm(buf, n, opc, p);       /* data op */
+        if (nn < 0) break;                               /* non-translatable → fall-through */
+        n = nn; ninstr++; p += 4;
+    }
+    if (ninstr == 0) { e->pc = pc; e->code = NULL; e->ninstr = 0; *out_ninstr = 0; return NULL; }
+    if (!terminated) n = emit_li(buf, n, RV_A0, p);      /* fall-through: a0 = next PC */
+    buf[n++] = rv_lw(RV_RA, 2, 0);                       /* epilogue */
+    buf[n++] = rv_addi(2, 2, 16);
+    buf[n++] = 0x00008067u;                              /* ret (returns a0) */
+    void *blk = vgba_jit_alloc(n * 4);
+    if (!blk) { s_arena_full = 1; *out_ninstr = 0; return NULL; }
+    memcpy(blk, buf, (size_t)n * 4);
+    vgba_jit_sync_icache(blk, (size_t)n * 4);
+    e->pc = pc; e->code = blk; e->ninstr = (uint16_t)ninstr;
+    g_vgba_blocks++;
+    *out_ninstr = ninstr;
+    return blk;
 }
 
 /* M6: build (on miss) and return a native block for the THUMB basic block at

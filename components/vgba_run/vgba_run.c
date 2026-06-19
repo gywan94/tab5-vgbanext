@@ -32,6 +32,7 @@
 #include "freertos/semphr.h"
 #include "esp_heap_caps.h"
 #include "esp_timer.h"
+#include "esp_cpu.h"
 #include "esp_log.h"
 
 #include "odroid_audio.h"
@@ -155,7 +156,7 @@ static void draw_fps_overlay(uint16_t *fb, int fps)
 static odroid_gamepad_state s_gp;
 
 #ifndef VGBA_AUTOINPUT
-#define VGBA_AUTOINPUT 0   /* 1 = mash START then A on an 80-frame cycle to blow past
+#define VGBA_AUTOINPUT 1   /* 1 = mash START then A on an 80-frame cycle to blow past
                             * title/intro screens into THUMB-heavy gameplay (measurement
                             * builds; pair with VGBA_PROFILE). idf.py -DVGBA_AUTOINPUT=1 */
 #endif
@@ -535,7 +536,7 @@ void vgba_run(const char *rom_path)
 
     int frame = 0;
     int64_t fps_t = esp_timer_get_time();
-    int64_t acc_cpu = 0, acc_wait = 0;
+    int64_t acc_cpu = 0, acc_wait = 0; uint64_t acc_cyc = 0;
 #if VGBA_FRAME_LIMIT
     int64_t frame_deadline = esp_timer_get_time();
 #endif
@@ -549,7 +550,9 @@ void vgba_run(const char *rom_path)
 
         s_cur = idx;
         s_aud_n[idx] = 0;
+        uint32_t _cyc0 = esp_cpu_get_cycle_count();
         retro_run();                                     /* emulate; video+audio cbs fill buffer idx */
+        acc_cyc += (uint32_t)(esp_cpu_get_cycle_count() - _cyc0);
         acc_cpu += esp_timer_get_time() - t1;
 #if VGBA_FPS_OVERLAY
         draw_fps_overlay(s_fb[idx], s_cur_fps);           /* live FPS in the corner */
@@ -594,10 +597,31 @@ void vgba_run(const char *rom_path)
             int64_t now = esp_timer_get_time();
             s_cur_fps = (int)(frame * 1000000LL / (now - fps_t));
             s_cur_cpu = (int)(acc_cpu / frame / 1000);
-            extern unsigned g_vgba_blocks, g_vgba_jit_instrs;
+            extern unsigned g_vgba_blocks, g_vgba_jit_instrs, g_vgba_arm_instrs;
+            static unsigned s_arm_instrs_prev = 0;
             unsigned ji = g_vgba_jit_instrs - s_jit_instrs_prev; s_jit_instrs_prev = g_vgba_jit_instrs;
-            ESP_LOGI(TAG, "FPS=%d  CPU=%dms WAIT=%lldms | JIT blocks=%u instrs/frame=%u",
-                     s_cur_fps, s_cur_cpu, acc_wait / frame / 1000, g_vgba_blocks, ji / frame);
+            unsigned ai = g_vgba_arm_instrs - s_arm_instrs_prev; s_arm_instrs_prev = g_vgba_arm_instrs;
+            ESP_LOGI(TAG, "FPS=%d  CPU=%dms WAIT=%lldms | JIT blocks=%u instrs/frame=%u ARM-jit/frame=%u",
+                     s_cur_fps, s_cur_cpu, acc_wait / frame / 1000, g_vgba_blocks, ji / frame, ai / frame);
+            { extern unsigned g_arm_region[16];
+              ESP_LOGW(TAG, "ARM-region/frame: EWRAM(02)=%u IWRAM(03)=%u ROM(08)=%u ROM(09)=%u other=%u",
+                       g_arm_region[2]/frame, g_arm_region[3]/frame, g_arm_region[8]/frame, g_arm_region[9]/frame,
+                       (g_arm_region[0]+g_arm_region[1]+g_arm_region[4]+g_arm_region[5]+g_arm_region[6]+g_arm_region[7])/frame);
+              for (int i = 0; i < 16; i++) g_arm_region[i] = 0; }
+            { extern unsigned g_iprof_arm, g_iprof_thumb, g_iprof[6];
+              unsigned long n = (unsigned long)g_iprof_arm + g_iprof_thumb;
+              if (n > 1) {
+                  unsigned long ipf = n / frame;
+                  unsigned long cpf = (unsigned long)(acc_cyc / frame);
+                  ESP_LOGW(TAG, "CPI: instr/f=%lu cyc/f=%lu CPI=%lu | LDST=%lu%% BLK=%lu%% ALU=%lu%%",
+                           ipf, cpf, ipf ? cpf / ipf : 0,
+                           100UL * g_iprof[2] / n, 100UL * g_iprof[3] / n, 100UL * g_iprof[0] / n);
+              }
+              g_iprof_arm = 0;
+              g_iprof_thumb = 0;
+              for (int i = 0; i < 6; i++) g_iprof[i] = 0;
+            }
+            acc_cyc = 0;
             /* M6.5: in profile mode (g_vgba_jit==2) report where the hot THUMB runs
              * from + how translatable it is — decides ROM-only vs needing IWRAM+SMC. */
             extern int g_vgba_jit; extern unsigned g_vgba_prof_reg[4], g_vgba_prof_xlat[4];

@@ -41,6 +41,16 @@ void  vgba_jit_sync_icache(void *buf, size_t len);
 extern int g_vgba_jit;                  /* 0=off, 1=chaining JIT, 2=measurement profiler */
 int  vgba_jit_thumb_dispatch(uint32_t pc);
 
+/* M-A1 ARM-mode dispatch: build/run a native leaf block of consecutive translatable
+ * ARM ops (data-processing immediate, AL, no-PC) at `pc`; returns #instrs run (0 =
+ * fall back to interpreter). Called from gba.c armExecute when VGBA_JIT_ARM_MODE. */
+int  vgba_jit_arm_dispatch(uint32_t pc);
+
+/* M-A5 ARM chaining block builder: like vgba_jit_get_block but for ARM. Returns a
+ * native block (uint32_t fn(void) → next ARM PC) ending in a B/Bcc terminator, or
+ * NULL. *out_ninstr = #ARM instrs. gba.c chains block→a0→block across branches. */
+void *vgba_jit_arm_get_block(uint32_t pc, int *out_ninstr);
+
 /* M6 chaining block builder. Returns a native block (uint32_t fn(void) → next
  * THUMB PC) for the basic block at pc, building on miss; NULL if the entry op is
  * non-translatable (negative-cached) or the arena is full. *out_ninstr = #THUMB

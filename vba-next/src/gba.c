@@ -1201,8 +1201,15 @@ static INLINE void CPUWriteMemory(uint32_t address, uint32_t value)
 		case 0x04:
 			if(address < 0x4000400)
 			{
+#if VGBA_TPROF
+				extern unsigned long long g_t_io; extern unsigned long g_io_n;
+				unsigned long long _t=__builtin_ia32_rdtsc();
+#endif
 				CPUUpdateRegister((address & 0x3FC), value & 0xFFFF);
 				CPUUpdateRegister((address & 0x3FC) + 2, (value >> 16));
+#if VGBA_TPROF
+				g_t_io += __builtin_ia32_rdtsc()-_t; g_io_n += 2;
+#endif
 			}
 			break;
 		case 0x05:
@@ -1249,7 +1256,14 @@ static INLINE void CPUWriteHalfWord(uint32_t address, uint16_t value)
 			break;
 		case 4:
 			if(address < 0x4000400)
+#if VGBA_TPROF
+			{ extern unsigned long long g_t_io; extern unsigned long g_io_n;
+			  unsigned long long _t=__builtin_ia32_rdtsc();
+			  CPUUpdateRegister(address & 0x3fe, value);
+			  g_t_io += __builtin_ia32_rdtsc()-_t; g_io_n++; }
+#else
 				CPUUpdateRegister(address & 0x3fe, value);
+#endif
 			break;
 		case 5:
 			WRITE16LE(paletteRAM + (address & 0x3fe), value);
@@ -1631,12 +1645,75 @@ static void BIOS_BgAffineSet (void)
 	}
 }
 
+unsigned long g_bulk_words = 0;   /* diag: words moved via DMA + CpuSet/CpuFastSet (bulk transfer) */
+unsigned long long g_t_io = 0, g_t_dma = 0, g_t_snd = 0;   /* diag: rdtsc cycles per category */
+unsigned long g_io_n = 0;
+#ifndef VGBA_TPROF
+#define VGBA_TPROF 0   /* PC-only: rdtsc timing of IO-write / DMA / sound (x86 builtin) */
+#endif
+#ifndef VGBA_BULKFAST
+#define VGBA_BULKFAST 1           /* fast-path bulk copies (plain RAM↔RAM → memmove); ~2-3% on device */
+#endif
+
+/* Map a GBA address to a contiguous host buffer for the bulk-copy fast path.
+ * *avail = bytes left in that region from addr; returns 0 for IO/special/mirror
+ * (caller must fall back to the per-word loop). Little-endian host == GBA order,
+ * so a raw memmove preserves bytes correctly (x86 and ESP32-RISC-V both LE). */
+static INLINE uint8_t* bulk_region(uint32_t addr, uint32_t *avail, int writable){
+  switch(addr>>24){
+    case 0x02: { uint32_t o=addr&0x3FFFF; *avail=0x40000-o; return workRAM+o; }
+    case 0x03: { uint32_t o=addr&0x7FFF;  *avail=0x8000 -o; return internalRAM+o; }
+    case 0x05: { uint32_t o=addr&0x3FF;   *avail=0x400  -o; return paletteRAM+o; }
+    case 0x06: { uint32_t o=addr&0x1FFFF; if(o>=0x18000) return 0;
+                 *avail=((o<0x10000)?0x10000:0x18000)-o; return vram+o; }
+    case 0x07: { uint32_t o=addr&0x3FF;   *avail=0x400  -o; return oam+o; }
+    case 0x08: case 0x09: case 0x0A: case 0x0B: case 0x0C:
+      if(writable) return 0;
+      { uint32_t o=addr & g_rom_mask; *avail=(g_rom_mask+1)-o; return rom+o; }
+    default: return 0;
+  }
+}
+/* 32-bit bulk copy of `count` words src→dest via one memmove if both ends are
+ * plain contiguous RAM/ROM and the whole range fits a single region. 1 = done. */
+unsigned long g_bulk_swi_words = 0, g_bulk_fastwords = 0;  /* diag */
+static INLINE int bulk_fast_copy(uint32_t source, uint32_t dest, int count){
+  if(count>0) g_bulk_swi_words += count;
+#if VGBA_BULKFAST
+  if(count<=0) return 1;
+  uint32_t sa,da, bytes=(uint32_t)count*4;
+  uint8_t *sp=bulk_region(source,&sa,0), *dp=bulk_region(dest,&da,1);
+  if(sp && dp && sa>=bytes && da>=bytes){ memmove(dp,sp,bytes); g_bulk_fastwords+=count; return 1; }
+#endif
+  return 0;
+}
+/* DMA fast copy: forward contiguous transfer (unit = 4 for 32-bit, 2 for 16-bit
+ * after doDMA's >>1), plain RAM↔RAM, single region → one memmove. Updates s,d and
+ * cpuDmaLast; returns 1 if it handled the whole transfer. */
+static INLINE int dma_fast(uint32_t *ps, uint32_t *pd, uint32_t si, uint32_t di, uint32_t c, int is32, uint32_t *plast){
+#if VGBA_BULKFAST
+  uint32_t unit = is32 ? 4u : 2u;
+  if(si==unit && di==unit && c>0){
+    uint32_t sa,da, bytes=c*unit;
+    uint8_t *sp=bulk_region(*ps,&sa,0), *dp=bulk_region(*pd,&da,1);
+    if(sp && dp && sa>=bytes && da>=bytes){
+      memmove(dp,sp,bytes);
+      if(is32) *plast = *(uint32_t*)(sp+bytes-4);
+      else { uint16_t lw=*(uint16_t*)(sp+bytes-2); *plast = lw | (lw<<16); }
+      g_bulk_fastwords += c; *ps += bytes; *pd += bytes;
+      return 1;
+    }
+  }
+#endif
+  return 0;
+}
+
 static void BIOS_CpuSet (void)
 {
 	uint32_t source = bus.reg[0].I;
 	uint32_t dest   = bus.reg[1].I;
 	uint32_t cnt    = bus.reg[2].I;
 	int count  = cnt & 0x1FFFFF;
+	g_bulk_words += count;
 
 	/* 32-bit ? */
 	if((cnt >> 26) & 1)
@@ -1653,6 +1730,7 @@ static void BIOS_CpuSet (void)
 				count--;
 			}
 		} else {
+			if(bulk_fast_copy(source, dest, count)) count = 0;   /* plain RAM↔RAM → memmove */
 #if USE_TWEAK_MEMFUNC
 			if(source > 0x0EFFFFFF) {
 				while(count > 0) {
@@ -1730,6 +1808,7 @@ static void BIOS_CpuFastSet (void)
 	dest      &= 0xFFFFFFFC;
 
 	count = cnt & 0x1FFFFF;
+	g_bulk_words += count;
 
 	/* fill? */
 	if((cnt >> 24) & 1) {
@@ -1746,6 +1825,7 @@ static void BIOS_CpuFastSet (void)
 			count -= 8;
 		}
 	} else {
+		if(bulk_fast_copy(source, dest, count)) count = 0;   /* plain RAM↔RAM → memmove */
 #if USE_TWEAK_MEMFUNC
 		if(source > 0x0EFFFFFF) {
 			while(count > 0) {
@@ -4821,6 +4901,69 @@ typedef  void (*insnfunc_t)(uint32_t opcode);
 #define arm_UI armUnknownInsn
 #define arm_BP armUnknownInsn
 
+/* ── dynamic instruction profiler (VGBA_IPROF) ──────────────────────────────
+ * Classify every EXECUTED THUMB/ARM instruction into 6 cost-relevant buckets +
+ * tally real memory accesses (block transfer counts its register-list popcount).
+ * Drained per window by vgba_run. Compile-gated → zero overhead when off. */
+#ifdef ESP_PLATFORM
+#include "esp_attr.h"
+#define HOT_IRAM IRAM_ATTR    /* place the hot interpreter loop in internal IRAM (I-cache test) */
+#else
+#define HOT_IRAM
+#endif
+#ifndef VGBA_IPROF
+#define VGBA_IPROF 0
+#endif
+unsigned g_iprof[6] = {0};                 /* 0 ALU 1 MUL 2 LDST 3 BLOCK 4 BRANCH 5 MISC */
+unsigned g_iprof_arm = 0, g_iprof_thumb = 0;
+unsigned long g_iprof_memacc = 0;          /* total emulated memory accesses */
+#if VGBA_IPROF
+static inline int gba_thumb_cat(uint16_t op){
+  switch(op>>13){
+    case 0: case 1: return 0;                                   /* shift / imm → ALU */
+    case 2:
+      if((op&0xFC00)==0x4000) return (((op>>6)&0xF)==0xD)?1:0;  /* fmt-4 ALU (MUL=0xD) */
+      if((op&0xFC00)==0x4400) return (((op>>8)&3)==3)?4:5;      /* hi-reg: BX→branch else misc */
+      return 2;                                                  /* PC-rel / reg-offset load-store */
+    case 3: case 4: return 2;                                    /* imm / halfword / SP load-store */
+    case 5:
+      if((op&0xF000)==0xA000) return 0;                          /* load-address (ADD) → ALU */
+      if((op&0xF600)==0xB400) return 3;                          /* PUSH/POP → block */
+      return 5;                                                  /* ADD SP / misc */
+    case 6:
+      if((op&0xF000)==0xC000) return 3;                          /* LDM/STM → block */
+      if((op&0xFF00)==0xDF00) return 5;                          /* SWI */
+      return 4;                                                  /* Bcc → branch */
+    default: return 4;                                           /* B / BL */
+  }
+}
+static inline int gba_arm_cat(uint32_t w){
+  unsigned b2725=(w>>25)&7, b2726=(w>>26)&3;
+  if((w&0x0FFFFFF0)==0x012FFF10) return 4;                       /* BX */
+  if(b2725==5) return 4;                                         /* B/BL */
+  if(b2725==4) return 3;                                         /* LDM/STM */
+  if(b2726==1) return 2;                                         /* LDR/STR */
+  if(b2726==0){
+    if((w&0x0FC000F0)==0x00000090) return 1;                     /* MUL/MLA */
+    if((w&0x0F8000F0)==0x00800090) return 1;                     /* UMULL/SMULL */
+    if((w&0x0FB00FF0)==0x01000090) return 5;                     /* SWP */
+    if(((w>>4)&1)&&((w>>7)&1)&&b2725==0) return 2;               /* halfword load-store */
+    return 0;                                                    /* data processing */
+  }
+  return 5;                                                      /* coproc / SWI / misc */
+}
+static inline void gba_iprof_thumb(uint16_t op){
+  int c=gba_thumb_cat(op); g_iprof[c]++; g_iprof_thumb++;
+  if(c==2) g_iprof_memacc++;
+  else if(c==3) g_iprof_memacc += __builtin_popcount(op&0xFF) + (((op&0xF600)==0xB400 && (op&0x0100))?1:0);
+}
+static inline void gba_iprof_arm(uint32_t op){
+  int c=gba_arm_cat(op); g_iprof[c]++; g_iprof_arm++;
+  if(c==2) g_iprof_memacc++;
+  else if(c==3) g_iprof_memacc += __builtin_popcount(op&0xFFFF);
+}
+#endif
+
 static insnfunc_t armInsnTable[4096] =
 {
     arm000,arm001,arm002,arm003,arm004,arm005,arm006,arm007,  /* 000 */
@@ -5011,7 +5154,23 @@ static INLINE void cpuMasterCodeCheck(void)
 }
 
 /* Wrapper routine (execution loop) /////////////////////////////////////// */
-static int armExecute (void)
+/* M-A1 ARM-mode dynarec hook (see vgba_jit.c). VGBA_JIT_ARM_MODE gates the hook;
+ * VGBA_JIT_ARM_VALIDATE re-runs each block on the interpreter and compares bit-exact. */
+#ifndef VGBA_JIT_ARM_MODE
+#define VGBA_JIT_ARM_MODE 1
+#endif
+#ifndef VGBA_JIT_ARM_VALIDATE
+#define VGBA_JIT_ARM_VALIDATE 0
+#endif
+#ifndef VGBA_JIT_THUMB_ENABLE
+#define VGBA_JIT_THUMB_ENABLE 0   /* 0 = compile out the THUMB exec hook (ARM-mode isolation test) */
+#endif
+extern int g_vgba_jit;
+extern int vgba_jit_arm_dispatch(uint32_t pc);
+extern void *vgba_jit_arm_get_block(uint32_t pc, int *out_ninstr);   /* M-A5 chaining */
+extern unsigned g_vgba_jit_instrs;
+
+static int HOT_IRAM armExecute (void)
 {
    int ct    = 0;
    bool test = false;
@@ -5034,15 +5193,120 @@ static int armExecute (void)
       cpuMasterCodeCheck();
 #endif
 
-      if ((bus.armNextPC & 0x0803FFFF) == 0x08020000)
-         bus.busPrefetchCount = 0x100;
+#if VGBA_JIT_ARM_MODE
+      { extern unsigned g_arm_region[16]; g_arm_region[(bus.armNextPC >> 24) & 0xF]++; }  /* diag: where does ARM run? */
+      /* M-A1: at loop top, bus.armNextPC = the ARM instr about to execute. When armed
+       * and in ROM (0x08-0x0D, read-only → SMC-safe), run native ARM leaf blocks back
+       * to back, then resync the pipeline ONCE (+4 stride). Dispatch is per-block. */
+      /* JIT-able regions: ROM 0x08-0x0D (read-only, SMC-safe) + IWRAM 0x03 (where
+       * ARM-heavy games run their hot code — NEEDS SMC for the real-speed path; safe
+       * here only because VGBA_JIT_ARM_VALIDATE keeps the interpreter authoritative). */
+#define ARM_JIT_REGION(r) ((r) == 0x03 || ((r) >= 0x08 && (r) <= 0x0D))
+      {
+      uint32_t _r = bus.armNextPC >> 24;
+      if (g_vgba_jit == 1 && ARM_JIT_REGION(_r)) {
+         uint32_t _bpc = bus.armNextPC;
+         int _ran = 0;
+         for (;;) {
+            uint32_t _start = _bpc;
+            int _ninstr;
+#if VGBA_JIT_ARM_VALIDATE
+            {
+               extern int printf(const char *, ...);
+               static int _avmax = 0;
+               uint32_t _s0[18]; for (int _i = 0; _i < 18; _i++) _s0[_i] = bus.reg[_i].I;
+               bool _sN = N_FLAG, _sZ = Z_FLAG, _sC = C_FLAG, _sV = V_FLAG;
+               _ninstr = vgba_jit_arm_dispatch(_start);             /* run JIT block */
+               if (_ninstr == 0) break;
+               uint32_t _jr[18]; for (int _i = 0; _i < 18; _i++) _jr[_i] = bus.reg[_i].I;
+               bool _jN = N_FLAG, _jZ = Z_FLAG, _jC = C_FLAG, _jV = V_FLAG;
+               for (int _i = 0; _i < 18; _i++) bus.reg[_i].I = _s0[_i];  /* restore pre-state */
+               N_FLAG = _sN; Z_FLAG = _sZ; C_FLAG = _sC; V_FLAG = _sV;
+               uint32_t _ip = _start;                               /* re-run via interpreter */
+               for (int _k = 0; _k < _ninstr; _k++) {
+                  uint32_t _o = CPUReadMemoryQuick(_ip);
+                  int _c = _o >> 28, _take = 1;                      /* honor ARM condition code */
+                  switch (_c) {
+                     case 0x0: _take = Z_FLAG; break;               case 0x1: _take = !Z_FLAG; break;
+                     case 0x2: _take = C_FLAG; break;               case 0x3: _take = !C_FLAG; break;
+                     case 0x4: _take = N_FLAG; break;               case 0x5: _take = !N_FLAG; break;
+                     case 0x6: _take = V_FLAG; break;               case 0x7: _take = !V_FLAG; break;
+                     case 0x8: _take = C_FLAG && !Z_FLAG; break;    case 0x9: _take = !C_FLAG || Z_FLAG; break;
+                     case 0xA: _take = (N_FLAG == V_FLAG); break;   case 0xB: _take = (N_FLAG != V_FLAG); break;
+                     case 0xC: _take = !Z_FLAG && (N_FLAG == V_FLAG); break;
+                     case 0xD: _take = Z_FLAG || (N_FLAG != V_FLAG); break;
+                     case 0x0F: _take = 0; break;
+                  }
+                  if (_take) (*armInsnTable[((_o >> 16) & 0xFF0) | ((_o >> 4) & 0x0F)])(_o);
+                  _ip += 4;
+               }
+               if (_avmax < 40) {
+                  uint32_t _op0 = CPUReadMemoryQuick(_start);
+                  int _mm = 0;
+                  for (int _i = 0; _i < 16; _i++) if (bus.reg[_i].I != _jr[_i]) {
+                     printf("ARMJITVAL @%08lx op=%08lx r%d jit=%08lx ref=%08lx\n",
+                            (unsigned long)_start, (unsigned long)_op0, _i,
+                            (unsigned long)_jr[_i], (unsigned long)bus.reg[_i].I); _avmax++; _mm = 1; break; }
+                  static int _dumped = 0;
+                  if (_mm && !_dumped) { _dumped = 1;
+                     printf("ARMBLK @%08lx ninstr=%d:", (unsigned long)_start, _ninstr);
+                     for (int _k = 0; _k < _ninstr; _k++) printf(" %08lx", (unsigned long)CPUReadMemoryQuick(_start + 4*_k));
+                     printf(" | pre:"); for (int _k = 0; _k < 16; _k++) printf(" %08lx", (unsigned long)_s0[_k]);
+                     printf("\n");
+                  }
+                  if (N_FLAG != _jN || Z_FLAG != _jZ || C_FLAG != _jC || V_FLAG != _jV) {
+                     printf("ARMJITVAL @%08lx op=%08lx FLAG jit=%d%d%d%d ref=%d%d%d%d\n",
+                            (unsigned long)_start, (unsigned long)_op0, _jN,_jZ,_jC,_jV,
+                            N_FLAG,Z_FLAG,C_FLAG,V_FLAG); _avmax++; }
+               }
+               _bpc = _ip;                                          /* interpreter authoritative */
+            }
+#else
+            { int _ni; void *_code = vgba_jit_arm_get_block(_start, &_ni);  /* M-A5: chain via a0 */
+              if (!_code) break;
+              _bpc = ((uint32_t (*)(void))_code)();    /* run block → a0 = next ARM PC */
+              _ninstr = _ni; }
+#endif
+            cpuTotalTicks += (uint32_t)_ninstr;     /* prefetch-on ROM ≈ 1 cyc/op (see THUMB note) */
+            g_vgba_jit_instrs += (unsigned)_ninstr;
+            _ran = 1;
+            uint32_t _nr = _bpc >> 24;
+            if (!ARM_JIT_REGION(_nr)) break;         /* left JIT-able region */
+            if (cpuTotalTicks >= cpuNextEvent) break;/* event boundary */
+         }
+         if (_ran) {
+            bus.armNextPC   = _bpc;
+            bus.reg[15].I   = _bpc + 4;
+            cpuPrefetch[0]  = CPUReadMemoryQuick(_bpc);
+            cpuPrefetch[1]  = CPUReadMemoryQuick(_bpc + 4);
+            bus.busPrefetch = false;
+            test = cpuTotalTicks < cpuNextEvent && armState && !holdState;
+            if (test) continue; else break;
+         }
+      }
+      }
+#endif
 
-      opcode = cpuPrefetch[0];
-      cpuPrefetch[0] = cpuPrefetch[1];
+      /* Tier-1 opt: the gamepak-prefetch-buffer bookkeeping is only meaningful for
+       * ROM (0x08-0x0D); for IWRAM/EWRAM code busPrefetchCount is held at 0 by
+       * codeTicksAccess, so this whole block is wasted work. Gate it to ROM. */
+      {
+      uint32_t _pfr = bus.armNextPC >> 24;
+      if (_pfr >= 0x08 && _pfr <= 0x0D) {
+         if ((bus.armNextPC & 0x0803FFFF) == 0x08020000)
+            bus.busPrefetchCount = 0x100;
 
-      bus.busPrefetch = false;
-      busprefetch_mask = ((bus.busPrefetchCount & 0xFFFFFE00) | -(bus.busPrefetchCount & 0xFFFFFE00)) >> 31;
-      bus.busPrefetchCount = ((0x100 | (bus.busPrefetchCount & 0xFF)) & busprefetch_mask) | (bus.busPrefetchCount & ~busprefetch_mask);
+         opcode = cpuPrefetch[0];
+         cpuPrefetch[0] = cpuPrefetch[1];
+         bus.busPrefetch = false;
+         busprefetch_mask = ((bus.busPrefetchCount & 0xFFFFFE00) | -(bus.busPrefetchCount & 0xFFFFFE00)) >> 31;
+         bus.busPrefetchCount = ((0x100 | (bus.busPrefetchCount & 0xFF)) & busprefetch_mask) | (bus.busPrefetchCount & ~busprefetch_mask);
+      } else {
+         opcode = cpuPrefetch[0];
+         cpuPrefetch[0] = cpuPrefetch[1];
+         bus.busPrefetch = false;        /* non-ROM: skip the prefetch-count math (it's a no-op there) */
+      }
+      }
 
 
       oldArmNextPC = bus.armNextPC;
@@ -5108,6 +5372,9 @@ static int armExecute (void)
          }
       }
 
+#if VGBA_IPROF
+      gba_iprof_arm(opcode);
+#endif
       if (cond_res)
       {
          cond1 = (opcode>>16)&0xFF0;
@@ -6794,7 +7061,7 @@ extern void vgba_jit_set_helpers(void *ld32, void *ld16, void *ld16s, void *ld8,
 uint32_t vgba_h_ld32(uint32_t), vgba_h_ld16(uint32_t), vgba_h_ld16s(uint32_t), vgba_h_ld8(uint32_t), vgba_h_ld8s(uint32_t);
 void vgba_h_st32(uint32_t, uint32_t), vgba_h_st16(uint32_t, uint32_t), vgba_h_st8(uint32_t, uint32_t);
 
-static int thumbExecute (void)
+static int HOT_IRAM thumbExecute (void)
 {
    int ct    = 0;
    bool test = false;
@@ -6829,7 +7096,7 @@ static int thumbExecute (void)
       uint32_t _r = bus.armNextPC >> 24;
       if (g_vgba_jit == 2) {
          vgba_jit_profile(bus.armNextPC);   /* measurement only: tally region+coverage, interp runs */
-      } else if (g_vgba_jit == 1 && (_r >= 0x08 && _r <= 0x0D)) {
+      } else if (VGBA_JIT_THUMB_ENABLE && g_vgba_jit == 1 && (_r >= 0x08 && _r <= 0x0D)) {
          uint32_t _bpc = bus.armNextPC;
          int _ran = 0;
          for (;;) {
@@ -6908,6 +7175,9 @@ static int thumbExecute (void)
       bus.reg[15].I += 2;
       THUMB_PREFETCH_NEXT;
 
+#if VGBA_IPROF
+      gba_iprof_thumb(opcode);
+#endif
       (*thumbInsnTable[opcode>>6])(opcode);
 
       ct = clockTicks;
@@ -12216,6 +12486,7 @@ static void doDMA(uint32_t *p_s, uint32_t *p_d, uint32_t si, uint32_t di, uint32
 {
 	uint32_t s = *p_s;
 	uint32_t d = *p_d;
+	extern unsigned long g_bulk_words; g_bulk_words += c;
 	int sm = s >> 24;
 	int dm = d >> 24;
 	int sw = 0;
@@ -12251,6 +12522,7 @@ static void doDMA(uint32_t *p_s, uint32_t *p_d, uint32_t si, uint32_t di, uint32
 		}
 		else
 		{
+			if(dma_fast(&s,&d,si,di,c,1,&cpuDmaLast)) c=0;   /* 32-bit plain RAM copy → memmove */
 			while(c != 0)
 			{
 				uint32_t v = CPUReadMemory(s);
@@ -12278,6 +12550,7 @@ static void doDMA(uint32_t *p_s, uint32_t *p_d, uint32_t si, uint32_t di, uint32
 		}
 		else
 		{
+			if(dma_fast(&s,&d,si,di,c,0,&cpuDmaLast)) c=0;   /* 16-bit plain RAM copy → memmove */
 			while(c != 0)
 			{
 				cpuDmaLast = CPUReadHalfWord(s);
@@ -13381,7 +13654,7 @@ void UpdateJoypad(void)
    }
 }
 
-void CPULoop (void)
+void HOT_IRAM CPULoop (void)
 {
 	bool framedone;
 	int timerOverflow = 0;
@@ -13603,7 +13876,12 @@ updateLoop:
 			soundTicks -= clockTicks;
 			if(!soundTicks)
 			{
+#if VGBA_TPROF
+				{ extern unsigned long long g_t_snd; unsigned long long _t=__builtin_ia32_rdtsc();
+				  process_sound_tick_fn(); g_t_snd += __builtin_ia32_rdtsc()-_t; }
+#else
 				process_sound_tick_fn();
+#endif
 				soundTicks += SOUND_CLOCK_TICKS;
 			}
 #endif
